@@ -118,7 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\MasterSheet.css" />
+    <Content Include="Content\css\SearchSheet.css" />
     <Content Include="Content\js\MasterScript.js" />
+    <Content Include="Content\js\SearchScript.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
