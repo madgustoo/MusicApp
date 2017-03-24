@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.title - MusicPen</title>
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://firebasestorage.googleapis.com/v0/b/personal-1c08e.appspot.com/o/ic_menu.css?alt=media&token=d3e0e883-baca-49e2-8e0d-4c43d1ca59c2'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'> 
+    @RenderSection("head", false)
+</head>
+<body>
+    <div class="container-fluid">
+        <navbar>
+            <div class="navbar nav navbar-fixed-top navbar-inverse">             
+                <div class="v-flex">
+                    <div class="navbar-body">
+                        <div class="navbar-start">
+                            <a href="@Url.Action("", "")">
+                                <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/personal-1c08e.appspot.com/o/logo.svg?alt=media&token=7a322d4e-6088-4647-975a-0f36107a5547">
+                            </a>
+                        </div>
+                        <div class="search">
+                            <input type="text" class="search-textbox" placeholder="Search for artists">
+                            <a class="ico-btn search-btn"><i class="material-icons ic_search">&#xE8B6;</i></a>
+                            <a class="ico-btn clear-btn"><i class="material-icons ic_clear">&#xE14C;</i></a>
+                        </div>
+                        <div class="navbar-end">
+                            <a style="text-transform: uppercase">Sign Up</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </navbar>
+        
+        <div>
+            @RenderBody()
+        </div>
+        <footer style="border-top:1px solid; border-color:#D7D6D6;">
+            <p>&copy; @DateTime.Now.Year - Team Horton</p>
+        </footer>
+    </div> <!--/.container-fluid -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="~/Content/js/navigation-bar.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>
