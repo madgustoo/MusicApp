@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Diagnostics;
 
 namespace MusicApp.Service
 {
@@ -21,6 +22,11 @@ namespace MusicApp.Service
                     await httpClient.GetStringAsync(url)
                 );
             }
+        }
+
+        public async Task<List<Artist>> SearchArtist(string name) {
+            var output = await SpotifyWebAPI.Artist.Search(name);
+            return null;
         }
 
     }
