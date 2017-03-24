@@ -1,5 +1,5 @@
 ﻿/*Styling links*/
-navbar a{
+navbar a {
     font-size: 16px;
     font-weight: 300;
     font-family: "Montserrat", sans-serif;
@@ -19,18 +19,22 @@ navbar a{
     cursor:pointer;
     margin: 4px;
 }
-navbar a:hover, navbar a:active, navbar a{
+
+navbar a:hover, navbar a:active, navbar a {
     text-decoration: none;
     color: rgba(0,0,0,0.6);
 }
-navbar a:hover{
+
+navbar a:hover {
     background: rgba(0,0,0,0.06);
 }
-navbar a:active{
+
+navbar a:active {
     color: rgba(0,0,0,0.9);
     background: rgba(0,0,0,0.1);
 }
-navbar a{
+
+navbar a {
     color: #5bc0de;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
@@ -40,7 +44,7 @@ navbar a{
 
 /*Shadow*/
 .navbar-body {
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+    box-shadow: 0 4px 2px -2px #333;
 }
 
 /*Setting Up Navbar Layouts*/
@@ -52,12 +56,7 @@ navbar .navbar-inverse{
     max-height: 50px;
     height: 50px;
 }
-navbar .container-fluid{
-    position: absolute;
-    top:0; bottom: 0;
-    right:0;
-    left:0;
-}
+
 navbar .navbar-body{
     display: flex;
     display: -webkit-flex;
@@ -68,10 +67,12 @@ navbar .navbar-body{
     height: 100%;
     position: relative;
 }
+
 navbar div.navbar-end{
     align-items: flex-start;
     -webkit-align-items: flex-start;
 }
+
 navbar div.navbar-start,
 navbar div.navbar-end{
     flex: 1;
@@ -83,6 +84,7 @@ navbar div.navbar-end{
     -webkit-align-items: center;
     justify-content: space-around;
 }
+
 navbar div.navbar-start .logo{
     opacity: 0.6;
     width:30px;
@@ -92,11 +94,13 @@ navbar div.navbar-start .logo{
 navbar .nav{
     z-index: 2;
 }
+
 navbar .tabs{
     margin-top: 50px;
     z-index: 1;
     position: relative;
 }
+
 navbar .tabs .navbar-body{
     padding: 0;
     margin-bottom: 0;
@@ -104,7 +108,7 @@ navbar .tabs .navbar-body{
 
 /*Styling Search Textbox*/
 
-navbar div.search{
+navbar div.search {
     background: rgba(0,0,0,0.12);
     flex: 3;
     -webkit-flex: 3;
@@ -121,7 +125,8 @@ navbar div.search{
     -o-transition: all 0.3s cubic-bezier(0.21, 0.61, 0.36, 1);
     transition: all 0.3s cubic-bezier(0.21, 0.61, 0.36, 1);
 }
-navbar div.search{
+
+navbar div.search {
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
@@ -133,10 +138,12 @@ navbar div.search{
     padding: 0 9px;
     overflow-x: hidden;
 }
-navbar div.search.focused{
+
+navbar div.search.focused {
     background: rgba(0,0,0,0.05);
 }
-navbar div.search .search-textbox{
+
+navbar div.search .search-textbox {
     position: relative;
     width: 140px;
     height: 100%;
@@ -155,18 +162,21 @@ navbar div.search .search-textbox{
     cursor: pointer;
 
 }
-navbar div.search.focused .search-textbox{
+
+navbar div.search.focused .search-textbox {
     width:100%;
     cursor: text;
 }
-navbar div.search:hover span{
+
+navbar div.search:hover span {
     -webkit-transform: translateX(40%);
     -moz-transform: translateX(40%);
     -ms-transform: translateX(40%);
     -o-transform: translateX(40%);
     transform: translateX(40%);
 }
-navbar .ico-btn{
+
+navbar .ico-btn {
     position: relative;
     width: 30px;
     height:30px;
@@ -175,14 +185,16 @@ navbar .ico-btn{
     border-radius:50%;
     padding:5px;
 }
-navbar .ico-btn.search-btn, .ico-btn.clear-btn{
+
+navbar .ico-btn.search-btn, .ico-btn.clear-btn {
     padding:3px;
     margin: 3px;
     opacity: 0;
     visibility: hidden;
 
 }
-navbar .ico-btn.clear-btn{
+
+navbar .ico-btn.clear-btn {
     margin-right: -30px;
     -webkit-animation:0.3s SwiftSlideToRight cubic-bezier(0.21, 0.61, 0.36, 1) 0.2s;
     -o-animation:0.3s SwiftSlideToRight cubic-bezier(0.21, 0.61, 0.36, 1) 0.2s;
@@ -192,7 +204,8 @@ navbar .ico-btn.clear-btn{
     -o-animation-delay: 0.2s;
     animation-delay: 0.2s;
 }
-navbar div.search.focused.not-null.multi-char .ico-btn.clear-btn{
+
+navbar div.search.focused.not-null.multi-char .ico-btn.clear-btn {
     margin-right: 0;
     opacity: 1;
     visibility: visible;
@@ -204,14 +217,16 @@ navbar div.search.focused.not-null.multi-char .ico-btn.clear-btn{
     -o-animation-delay: 0.2s;
     animation-delay: 0.2s;
 }
-navbar .ico-btn{
+
+navbar .ico-btn {
     -webkit-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -moz-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -ms-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -o-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
 }
-navbar div.search.focused.not-null .ico-btn.search-btn{
+
+navbar div.search.focused.not-null .ico-btn.search-btn {
     visibility: visible;
     opacity: 1;
     -webkit-transition-duration: 0.6s;
@@ -222,29 +237,33 @@ navbar div.search.focused.not-null .ico-btn.search-btn{
 }
 
 /*Styling Tabs*/
-navbar .tabs .navbar-body li.active a{
+navbar .tabs .navbar-body li.active a {
     color: #333;
 }
-navbar .tabs .navbar-body li{
+
+navbar .tabs .navbar-body li {
     -webkit-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -moz-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -ms-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     -o-transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
     transition: all 0.2s cubic-bezier(0.21, 0.61, 0.36, 1);
 }
-navbar .tabs .navbar-body li:hover{
+
+navbar .tabs .navbar-body li:hover {
     background: rgba(0,0,0,0.02);
 }
-navbar .tabs .navbar-body li:active{
+
+navbar .tabs .navbar-body li:active {
     background: rgba(0,0,0,0.05);
 }
-navbar .tabs .navbar-body li a:hover, .tabs .navbar-body li a:active{
+
+navbar .tabs .navbar-body li a:hover, .tabs .navbar-body li a:active {
     background: rgba(0,0,0,0);
     color: #5bc0de;
 }
 
 /*Styling Tab Highlighter*/
-navbar .tab-highlighter{
+navbar .tab-highlighter {
     height:2px;
     width: 50px;
     margin-top: -2px;
@@ -264,6 +283,7 @@ navbar .tab-highlighter{
         opacity: 1;
     }
 }
+
 @keyframes SwiftSlideToRight {
     100%{
         opacity:0;
@@ -273,5 +293,13 @@ navbar .tab-highlighter{
 
 /* My Code */
 body { 
-    padding-top: 65px; 
+    padding-top: 60px; 
 }
+
+.featured {
+	background-color: #95d6ea;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
