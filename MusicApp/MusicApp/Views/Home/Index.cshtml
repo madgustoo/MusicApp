@@ -3,7 +3,44 @@
     ViewBag.title = "Home";
 }
 
-
-<div class="featured">
-    <h1>Featured artist</h1>
+<div class="row">
+    <div class="col-md-4 "> 
+        <div class="featured panel">
+            <div class="panel-heading">Featured Artist</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="clearfix">
+                        <img class="img-circle img-responsive pull-left" src="https://i.scdn.co/image/dd331c087a68fdb3218539fdd04da7f3ea8dca3b" width="200" height="200">
+                        <div class="content pull-right">
+                            <h3>PNL</h3>
+                            <p><span class="badge">francoton</span></p>
+                            <p><span class="badge">trap francais</span></p>
+                            <p><span class="badge">bledaro music</span></p>
+                        </div>
+                    </div> <!-- / Clearfix -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="featured panel">
+            <div class="panel-heading">Top Tracks</div>
+            <div class="panel-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="featured panel">
+            <div class="panel-heading">Top Favorites</div>
+            <div class="panel-body">
+            </div>
+        </div>
+    </div>
 </div>
+
+<!--
+    foreach (var item in Model)
+    {
+        <p>item.name</p>
+    }    
+-->

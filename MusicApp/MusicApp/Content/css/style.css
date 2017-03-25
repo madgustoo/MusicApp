@@ -42,10 +42,11 @@ navbar a {
     float: right;
 }
 
-/*Shadow*/
+/*Shadow
 .navbar-body {
     box-shadow: 0 4px 2px -2px #333;
 }
+*/
 
 /*Setting Up Navbar Layouts*/
 navbar .navbar-inverse{
@@ -297,9 +298,26 @@ body {
 }
 
 .featured {
-	background-color: #95d6ea;
-    position: absolute;
-    width: 100%;
-    left: 0;
+	background-color: #242424;
+}
+
+.featured img {
+    margin-left:5%;
+}
+
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #242424;
+    color: white;
+}
+
+.panel h3 {
+    color:white;
+}
+
+
+.content {
+    margin-right:30%;
 }
 

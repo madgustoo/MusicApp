@@ -10,24 +10,20 @@ using System.Diagnostics;
 
 namespace MusicApp.Service
 {
-    public class SpotifyService
-    {
-        /* Search endpoint */
-        private string url = "https://api.spotify.com/v1/search";
+    /// <summary>
+    /// Requests from the Spotify API 
+    /// Wrapper / API Client used: https://spotifywebapi.codeplex.com/
+    /// </summary>
+    public class SpotifyService {
 
-        public async Task<List<Artist>> GetArtistsAsync() {
-            url += "?q='em'&type='artist'";
-            using (HttpClient httpClient = new HttpClient()) {
-                return JsonConvert.DeserializeObject<List<Artist>>(
-                    await httpClient.GetStringAsync(url)
-                );
-            }
-        }
-
-        public async Task<List<Artist>> SearchArtist(string name) {
+        // MusicApp.Models.Item == Artist list
+        public async Task<List<Item>> SearchArtist(string name) {
             var output = await SpotifyWebAPI.Artist.Search(name);
-            return null;
+            string outputString = JsonConvert.SerializeObject(output.Items);
+            // Deserialize the JSON string into a List of Item[an Artist is an item] 
+            List<Item> searchList = JsonConvert.DeserializeObject<List<Item>>(outputString);
+            return searchList;
         }
-
+        
     }
 }
