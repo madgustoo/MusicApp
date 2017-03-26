@@ -18,6 +18,10 @@
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
+  /* x and y scrollbar only show if needed*/
+  overflow:auto;
+  overflow-y:auto;
+  max-height: 500px;
 }
 
 .ui-autocomplete > li > div {
@@ -48,6 +52,23 @@
   cursor: pointer;
 }
 
+/* Search bar */
+
 ul {
     list-style-type: none;
+}
+
+#select-me {
+    padding:1%;
+}
+
+#select-text {
+   color:#333;
+   margin-left:2%;
+}
+
+
+#select-me:hover { 
+    background-color:#f1f1f1; 
+    cursor:pointer;
 }

@@ -11,10 +11,11 @@ namespace MusicApp.Controllers
     public class HomeController: Controller {
         private SpotifyService spotifyService = new SpotifyService();
 
-        public async Task<ActionResult> Index()
-        {
+        [HttpGet]
+        public async Task<ActionResult> Index() {
             var searchList = await spotifyService.SearchArtist("pnl");
             return View(searchList);
         }
+
     }
 }

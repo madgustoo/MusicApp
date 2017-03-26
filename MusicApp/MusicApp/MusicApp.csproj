@@ -150,8 +150,8 @@
   <ItemGroup>
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\search.css" />
-    <Content Include="Content\js\navigation-bar.js" />
-    <Content Include="Content\js\search.js" />
+    <Content Include="Content\js\Navigation-bar.js" />
+    <Content Include="Content\js\Search.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

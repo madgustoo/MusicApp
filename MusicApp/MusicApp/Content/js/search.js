@@ -1,15 +1,12 @@
-﻿
-var getSearchData = function (request, response) {
-    var artistName = request.term;
-    artistName += "*";
+﻿var getSearchData = function (request, response) {
     $.ajax({
         type: "GET",
         url: "https://api.spotify.com/v1/search",
         dataType: "json",
         data: {
             type: "artist",
-            q: artistName,
-            limit: 5
+            q: request.term + "*",
+            limit: 20
         },
         success: function (data) {
             // $.map: Creates with the JSONArray an array with the stuff we need e.g name, id and image
@@ -30,17 +27,17 @@ var getSearchData = function (request, response) {
     });
 }
 
+
 $(".search-textbox").autocomplete({
     source: getSearchData,
     minLength: 2,
     select: function (event, ui) {
-        // alert(ui.item.name);
+        alert(ui.item.name);
         // window.location.href = ui.item.id;
         // $("ul.ui-autocomplete").hide();
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
-    return $("<li></li>")
-    .append("<a>" + "<img class='img-circle img-responsive' height='80' width='80' style='margin:1%' src='" + item.imageSrc + "' />" + item.name + "</a>")
+    return $("<li id='select-me'></li>")
+    .append("<img class='img-circle' style='width:80px;height:80px;' src='" + item.imageSrc + "' /><span id='select-text'>" + item.name + "</span>")
     .appendTo(ul);
 };
-
