@@ -14,21 +14,20 @@ namespace MusicApp.Controllers
 
         // For manual search
         [HttpGet]
-        public async Task<ActionResult> Index(SearchViewModel model) {
+        public async Task<ActionResult> Index(string id) {
+            ViewBag.Term = id;
             // Search term
-            var name = "pr*";
-
+            
             Artists searchResult = null;
             string param = this.Request.QueryString["offset"];
             int offset = 0;
             if (param != null) {
                 offset = Int32.Parse(param);
-                searchResult = await spotifyService.SearchArtist(name, offset);
+                searchResult = await spotifyService.SearchArtist(id, offset);
             } else {
-                searchResult = await spotifyService.SearchArtist(name, 0);
+                searchResult = await spotifyService.SearchArtist(id, 0);
             }
-            //ViewBag.Term = model.Query;
-            ViewBag.Term = name;
+
             // Page total
             // First of page always adds up to 20 more than the last one
             ViewBag.FirstOfPage = 1 + offset;
