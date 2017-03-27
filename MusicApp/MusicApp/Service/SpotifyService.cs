@@ -17,13 +17,19 @@ namespace MusicApp.Service
     public class SpotifyService {
 
         // MusicApp.Models.Item == Artist list
-        public async Task<List<Item>> SearchArtist(string name) {
-            var output = await SpotifyWebAPI.Artist.Search(name);
-            string outputString = JsonConvert.SerializeObject(output.Items);
-            // Deserialize the JSON string into a List of Item[an Artist is an item] 
-            List<Item> searchList = JsonConvert.DeserializeObject<List<Item>>(outputString);
-            return searchList;
+        public async Task<Artists> SearchArtist(string name, int offset) {
+            var output = (Object) null;
+            if (offset > 0) {
+                // At the end: limit and offset
+                output = await SpotifyWebAPI.Artist.Search(name, "", "", "", "", 20, offset);
+            } else {
+                output = await SpotifyWebAPI.Artist.Search(name);
+            }
+            string outputString = JsonConvert.SerializeObject(output);
+            // Deserialize the JSON string into a Artists Object / Item[an Artist is an item] 
+            Artists searchResult = JsonConvert.DeserializeObject<Artists>(outputString);
+            return searchResult;
         }
-        
+    
     }
 }

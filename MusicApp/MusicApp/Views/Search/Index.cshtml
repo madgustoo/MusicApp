@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.title = "Search";
+}
+
+<div class="container">
+    <div class="result-heading">
+        <!-- 1-20 of 30 results for "pnl" -->
+        @ViewBag.FirstOfPage - @ViewBag.PageCount of @ViewBag.Total results for <span style="color:#c45500!important;">'@ViewBag.Term'</span>
+    </div>
+    @foreach (var artist in Model) {
+        <div class="result row">
+            <div class="col-md-2">
+                @if (artist.images.Count > 0) {
+                    <img class="img-circle" height="120" width="120" src="@artist.images[0].url" />
+                }
+                else {
+                    <img class="img-circle" height="150" width="150" src="http://www.nugget.ca/assets/img/default/contributor.jpg" />
+                }
+            </div>
+            <div class="result-info col-md-3" style="margin-top:1%;">
+                <h4><a href="#">@artist.name</a></h4>
+                @for (int i = 0; i < artist.genres.Count; i++) {
+                    if (i == 10) { break; }
+                    <span class="badge">@artist.genres[i]</span>
+                }
+                <p></p>
+            </div>
+        </div>
+    }
+    <div class="btn-controls text-right">      
+        @if (ViewBag.Previous != null) {
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset -= 20 })'">Previous</button>
+        }     
+        @if (ViewBag.Next != null) {
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset += 20 })'">Next</button>
+        }
+    </div>
+    
+</div>

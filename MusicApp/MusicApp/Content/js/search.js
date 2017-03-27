@@ -1,4 +1,5 @@
-﻿var getSearchData = function (request, response) {
+﻿/* Auto Search */
+var getSearchData = function (request, response) {
     $.ajax({
         type: "GET",
         url: "https://api.spotify.com/v1/search",
@@ -41,3 +42,16 @@ $(".search-textbox").autocomplete({
     .append("<img class='img-circle' style='width:80px;height:80px;' src='" + item.imageSrc + "' /><span id='select-text'>" + item.name + "</span>")
     .appendTo(ul);
 };
+
+/* Manual Search Problem: using form messes up search css*/
+$(".search-btn").click(function () {
+    var searchterm = $("search-textbox").val();
+    console.log(searchterm);
+    $.ajax({
+        url: "/Search",
+        type: 'GET',
+        data: {
+            'Query': searchterm
+        }
+    });
+});

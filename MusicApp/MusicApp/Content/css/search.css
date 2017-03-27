@@ -52,8 +52,7 @@
   cursor: pointer;
 }
 
-/* Search bar */
-
+/* Search bar _Layout.cshtml */
 ul {
     list-style-type: none;
 }
@@ -63,12 +62,29 @@ ul {
 }
 
 #select-text {
-   color:#333;
-   margin-left:2%;
+   color: #333;
+   margin-left: 2%;
 }
 
 
 #select-me:hover { 
-    background-color:#f1f1f1; 
-    cursor:pointer;
+    background-color: #f1f1f1; 
+    cursor: pointer;
+}
+
+/* Search result Search/Index.cshtml*/
+.result {
+    padding-bottom: 1%; 
+    margin: 1% 0%;
+    border-bottom:1px solid #EBEBEB;
+}
+
+.result-heading {
+    padding:2% 0%;
+    border:1px solid grey;
+    text-align:center;
+}
+
+.btn-controls {
+    padding-bottom:1%;
 }
