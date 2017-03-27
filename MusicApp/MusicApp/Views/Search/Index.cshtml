@@ -3,6 +3,17 @@
     ViewBag.title = "Search";
 }
 
+@section head {
+    <link rel="stylesheet" href="~/Content/css/return-to-top.css" /> 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+}
+
+@section scripts {
+    <script src="~/Content/js/Return-to-top.js"></script>
+}
+
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>   
+
 <div class="container">
     <div class="result-heading">
         <!-- 1-20 of 30 results for "pnl" -->
@@ -30,10 +41,10 @@
     }
     <div class="btn-controls text-right">      
         @if (ViewBag.Previous != null) {
-            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset -= 20 })'">Previous</button>
+            <button type="button" id="previous" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset -= 20 })'">Previous</button>
         }     
         @if (ViewBag.Next != null) {
-            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset += 20 })'">Next</button>
+            <button type="button" id="next" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Search", new { offset = ViewBag.Offset += 20 })'">Next</button>
         }
     </div>
     

@@ -81,8 +81,7 @@ ul {
 
 .result-heading {
     padding:2% 0%;
-    border:1px solid grey;
-    text-align:center;
+    margin-left:1%;
 }
 
 .btn-controls {
