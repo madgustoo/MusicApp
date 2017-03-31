@@ -18,6 +18,7 @@ namespace MusicApp.Service
 
         // MusicApp.Models.Item == Artist list
         public async Task<Artists> SearchArtist(string name, int offset) {
+            name += "*";
             var output = (Object) null;
             if (offset > 0) {
                 // At the end: limit and offset
@@ -30,6 +31,14 @@ namespace MusicApp.Service
             Artists searchResult = JsonConvert.DeserializeObject<Artists>(outputString);
             return searchResult;
         }
-    
+
+        // Limit = 20
+        public async Task<List<Album>> GetArtistAlbums(string artistId) {
+            var output = await SpotifyWebAPI.Album.GetArtistAlbums(artistId);
+            string outputString = JsonConvert.SerializeObject(output);
+            AlbumRootObject searchResult = JsonConvert.DeserializeObject<AlbumRootObject>(outputString);
+            return searchResult.items;
+        }
+
     }
 }

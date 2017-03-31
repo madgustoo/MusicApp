@@ -7,7 +7,7 @@ namespace MusicApp.Models
 {
     /*JSON Example: https://api.spotify.com/v1/search?q=pnl&type=artist */
 
-    public class Rootobject {
+    public class SearchRootObject {
         public Artists artists { get; set; }
     }
 
@@ -21,7 +21,6 @@ namespace MusicApp.Models
         public int total { get; set; }
     }
 
-    // JSON Artist Object
     public class Item {
         public External_Urls external_urls { get; set; }
         public Followers followers { get; set; }

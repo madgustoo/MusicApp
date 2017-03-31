@@ -14,18 +14,15 @@ namespace MusicApp.Controllers
 
         // For manual search
         [HttpGet]
-        public async Task<ActionResult> Index(string id) {
-            ViewBag.Term = id;
-            // Search term
-            
+        public async Task<ActionResult> Index(string searchTerm) {
             Artists searchResult = null;
             string param = this.Request.QueryString["offset"];
             int offset = 0;
             if (param != null) {
                 offset = Int32.Parse(param);
-                searchResult = await spotifyService.SearchArtist(id, offset);
+                searchResult = await spotifyService.SearchArtist(searchTerm, offset);
             } else {
-                searchResult = await spotifyService.SearchArtist(id, 0);
+                searchResult = await spotifyService.SearchArtist(searchTerm, 0);
             }
 
             // Page total
@@ -34,6 +31,7 @@ namespace MusicApp.Controllers
             ViewBag.Total = searchResult.total;
             ViewBag.Next = searchResult.next;
             ViewBag.Previous = searchResult.previous;
+            ViewBag.Term = searchTerm;
             // Total of this page
             int totalCount = 0;
             foreach (var result in searchResult.items) {

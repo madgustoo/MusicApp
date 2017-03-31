@@ -45,20 +45,10 @@ $(".search-textbox").autocomplete({
 
 
 /* Manual Search Problem: using form messes up search css*/
+
 $(".search-btn").click(function () {
     var searchterm = $("#searchArtist").val();
     console.log(searchterm);
-    //$.ajax({
-    //    url: "/Search",
-    //    type: 'GET',
-    //    data: {
-    //        'Query': searchterm
-    //    }
-    //});
-    //var url = "";
-    // var pathname = window.location.pathname;
-    var searchResult = document.location.host + "/Search/Index/" + searchterm;
-    //  url = window.location.href;
-    //alert(searchResult);
-    window.location.href = "http://"+searchResult;
+    var searchResult = document.location.host + "/Search/" + searchterm;
+    window.location.href = "http://" + searchResult;
 });
