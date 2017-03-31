@@ -2,11 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
-using System.Diagnostics;
 
 namespace MusicApp.Service
 {
@@ -32,13 +28,22 @@ namespace MusicApp.Service
             return searchResult;
         }
 
-        // Limit = 20
+        // Limit = 20 With no tracks
         public async Task<List<Album>> GetArtistAlbums(string artistId) {
             var output = await SpotifyWebAPI.Album.GetArtistAlbums(artistId);
             string outputString = JsonConvert.SerializeObject(output);
             AlbumRootObject searchResult = JsonConvert.DeserializeObject<AlbumRootObject>(outputString);
             return searchResult.items;
         }
+
+        /*
+        // To play tracks put them in a table
+        public async Task<List<Track>> GetArtistTopTracks(string artistId) {
+            // var output = await SpotifyWebAPI.Artist.GetTopTracks(artistId);
+            return null;
+        }
+        */
+
 
     }
 }

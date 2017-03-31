@@ -43,12 +43,19 @@ $(".search-textbox").autocomplete({
     .appendTo(ul);
 };
 
-
-/* Manual Search Problem: using form messes up search css*/
-
+// Search request
 $(".search-btn").click(function () {
     var searchterm = $("#searchArtist").val();
     console.log(searchterm);
     var searchResult = document.location.host + "/Search/" + searchterm;
     window.location.href = "http://" + searchResult;
+});
+
+
+$(".search-textbox").on("keyup", function () {
+    if (this.value.length > 1) {
+        $("#searchOverlay").removeClass("hidden");
+    } else {
+        $("#searchOverlay").addClass("hidden");
+    }
 });
