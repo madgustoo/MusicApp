@@ -18,9 +18,9 @@ $("#topTracks tbody tr").on("click", "a", function (event) {
 });
 
 var currentTrack = 0;
-
 // Plays till the end no matter which track is chosen/played first 
 $("#audioPlayer")[0].addEventListener("ended", function () {
+    // var nextTrack = $("#topTracks tbody tr:eq(" + currentTrack + ")").attr("title");
     currentTrack++;
     
     if (currentTrack == $("#topTracks tbody tr a").length) {

@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = ViewBag.Artist;
+    int counter = 1;
 }
 
 @section scripts {
@@ -19,7 +20,6 @@
     */
     .fa-heart-o:hover {
         color: red;
-        content:red;
     }
 </style>
 
@@ -27,11 +27,13 @@
     <div class="col-md-4">
         <h4>Top Tracks</h4>
         <h6>Brought to you by Spotify</h6>
-        <table id="topTracks" class="table table-striped" style="border:none;">
+        <table id="topTracks" class="table style="border:none;">
             <tbody>
                 @foreach (var track in Model) {
-                    <tr>
-                        <td><i id="playButton" class="fa fa-play-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<a href="@track.previewurl">@track.name</a></td>
+                    <tr>                        
+                        <!--<i id="playButton" class="fa fa-play-circle-o" aria-hidden="true"></i> -->
+                        <td><span id="trackNo">@(counter++)</span></td>
+                        <td><a href="@track.previewurl">@track.name</a></td>
                         <td><i class="fa fa-list" aria-hidden="true"></i></td>
                         <td><i class="fa fa-heart-o" aria-hidden="true"></i></td>
                     </tr>
