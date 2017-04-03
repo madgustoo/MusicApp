@@ -159,6 +159,7 @@
     <Content Include="Content\css\return-to-top.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\search.css" />
+    <Content Include="Content\js\AudioPlayer.js" />
     <Content Include="Content\js\Navigation-bar.js" />
     <Content Include="Content\js\Return-to-top.js" />
     <Content Include="Content\js\Search.js" />
@@ -175,7 +176,7 @@
     </Compile>
     <Compile Include="Models\JsonAlbum.cs" />
     <Compile Include="Models\JsonSearch.cs" />
-    <Compile Include="Models\JsonTopTracks.cs" />
+    <Compile Include="Models\JsonTopTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SpotifyService.cs" />
   </ItemGroup>

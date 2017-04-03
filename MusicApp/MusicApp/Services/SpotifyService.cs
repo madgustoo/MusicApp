@@ -28,21 +28,20 @@ namespace MusicApp.Service
             return searchResult;
         }
 
-        // Limit = 20 With no tracks
+        // Get an artist's albums Limit = 20
         public async Task<List<Album>> GetArtistAlbums(string artistId) {
             var output = await SpotifyWebAPI.Album.GetArtistAlbums(artistId);
             string outputString = JsonConvert.SerializeObject(output);
-            AlbumRootObject searchResult = JsonConvert.DeserializeObject<AlbumRootObject>(outputString);
-            return searchResult.items;
+            AlbumRootObject albumObject = JsonConvert.DeserializeObject<AlbumRootObject>(outputString);
+            return albumObject.items;
         }
 
-        /*
-        // To play tracks put them in a table
+        // Get an artist's top tracks
         public async Task<List<Track>> GetArtistTopTracks(string artistId) {
-            // var output = await SpotifyWebAPI.Artist.GetTopTracks(artistId);
-            return null;
+            var output = await SpotifyWebAPI.Artist.GetTopTracks(artistId, "US");
+            string outputString = JsonConvert.SerializeObject(output);
+            return JsonConvert.DeserializeObject<List<Track>>(outputString);
         }
-        */
 
 
     }
