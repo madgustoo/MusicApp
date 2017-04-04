@@ -1,0 +1,9 @@
+﻿.audioPlayer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+
+.audioPlayer img {
+    border:1px solid black;   
+}

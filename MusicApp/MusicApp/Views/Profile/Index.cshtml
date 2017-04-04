@@ -9,25 +9,15 @@
     <script src="~/Content/js/AudioPlayer.js"></script>
 }
 
-<style>
-    /*
-    a {
-        color:gray;
-    }
-    #topTracks tbody tr:hover {
-        background-color:cadetblue
-    }
-    */
-    .fa-heart-o:hover {
-        color: red;
-    }
-</style>
+@section head {
+    <link rel="stylesheet" href="~/Content/css/profile.css" /> 
+}
 
 <div class="row">
     <div class="col-md-4">
         <h4>Top Tracks</h4>
         <h6>Brought to you by Spotify</h6>
-        <table id="topTracks" class="table style="border:none;">
+        <table id="topTracks" class="table" style="border:none;">
             <tbody>
                 @foreach (var track in Model) {
                     <tr>                        
@@ -40,10 +30,25 @@
                 }
             </tbody>
         </table>
-        <div class="player" style="position:fixed;bottom:0;width:100%;background-color:cadetblue;left:0;">
-            <audio src="" controls id="audioPlayer">
-                Sorry, your browser does not support HTML5
-            </audio>
-        </div>
+
+        <div class="audioPlayer">
+            <div class="">
+                <span class="" id="npAction">Paused...</span>
+                <br />
+                <span class="" id="npTitle"></span>
+                <br />
+                <img width="100" height="100" src="https://cdn3.iconfinder.com/data/icons/music-and-sound/512/vinyl_disc_audio_record_dj_gramophone_album_flat_icon-512.png"/>
+            </div>
+            <div class="player">
+                <audio src="" controls id="audioPlayer">
+                    Sorry, your browser does not support HTML5
+                </audio>
+            </div>
+            <div id="playlistNavigation">
+                <a id="btnPrev">&laquo;</a>
+                <a id="btnNext">&raquo;</a>
+            </div>
+        </div> <!-- /audioPlayer -->
+
     </div>
 </div>
