@@ -1,9 +1,21 @@
-﻿.audioPlayer {
+﻿body { 
+    padding-bottom: 70px; 
+}
+
+.audioPlayer  {
+    background-color:aliceblue;
+    padding:1%;
     position:fixed;
     bottom:0;
     width:100%;
 }
 
-.audioPlayer img {
-    border:1px solid black;   
+.audioPlayer p {
+  margin-left:10%;      
+}
+
+audio {
+    margin-left:1%;
+    width:50%;
+    color:black;
 }
