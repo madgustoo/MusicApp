@@ -20,3 +20,17 @@ audio {
     width:50%;
     color:black;
 }
+
+td .fa {
+    font-size:1.2em;
+}
+
+
+/* Favorite & Unfavorite */
+.change-icon > .fa + .fa,
+.change-icon:hover > .fa {
+  display: none;
+}
+.change-icon:hover > .fa + .fa {
+  display: inherit;
+}

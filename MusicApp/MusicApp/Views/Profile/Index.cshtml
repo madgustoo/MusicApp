@@ -23,11 +23,16 @@
                     @foreach (var track in Model)
                     {
                         <tr>
-                            <!--<i id="playButton" class="fa fa-play-circle-o" aria-hidden="true"></i> -->
                             <td><span class="trackNo">@(counter++)</span></td>
-                            <td><a href="@track.previewurl">@track.name</a></td>
+                            <td id="trackName"><a href="@track.previewurl">@track.name</a></td>
+                            <td style="color:red;"><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
                             <td><i class="fa fa-list" aria-hidden="true"></i></td>
-                            <td><i class="fa fa-heart-o" aria-hidden="true"></i></td>
+                            <td>
+                                <span class="change-icon" style="color:red;">
+                                    <i id="" class="fa fa-heart-o" aria-hidden="true"></i>
+                                    <i id="" class="fa fa-heart" aria-hidden="true"></i>
+                                </span>
+                            </td>
                         </tr>
                     }
                 </tbody>

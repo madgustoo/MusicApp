@@ -54,14 +54,14 @@ function playTrack (trackId) {
 };
 
 // Onclick [TopTrack Playlist]
-$("#topTracks tbody tr").on("click", "a", function(event) {
+$("#topTracks tbody tr").on("click", "#trackName", function (event) {
     event.preventDefault();
     // get tr [table row]
-    var id = parseInt($(this).parent().parent().index());
+    var id = parseInt($(this).parent().index());
     playTrack(id);
-    // toggle active
-    $(this).parent().parent().siblings().removeClass("active");
-    $(this).parent().parent().addClass("active");
+    // toggle active class
+    $(this).parent().siblings().removeClass("active");
+    $(this).parent().addClass("active");
 });
 
 // Next and Previous

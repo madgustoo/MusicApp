@@ -28,6 +28,7 @@ namespace MusicApp.Models
         public int track_number { get; set; }
         public string type { get; set; }
         public string uri { get; set; }
+        public string youtubeUrl { get; set; }
     }
 
     public class External_Ids  {
