@@ -15,7 +15,7 @@ namespace MusicApp.Controllers
         // For manual search
         [HttpGet]
         public async Task<ActionResult> Index(string searchTerm) {
-            Artists searchResult = null;
+            SearchRootObject searchResult = null;
             string param = this.Request.QueryString["offset"];
             int offset = 0;
             if (param != null) {
@@ -28,20 +28,20 @@ namespace MusicApp.Controllers
             // Page total
             // First of page always adds up to 20 more than the last one
             ViewBag.FirstOfPage = 1 + offset;
-            ViewBag.Total = searchResult.total;
-            ViewBag.Next = searchResult.next;
-            ViewBag.Previous = searchResult.previous;
+            ViewBag.Total = searchResult.artists.total;
+            ViewBag.Next = searchResult.artists.next;
+            ViewBag.Previous = searchResult.artists.previous;
             ViewBag.Term = searchTerm;
             // Total of this page
             int totalCount = 0;
-            foreach (var result in searchResult.items) {
+            foreach (var result in searchResult.artists.items) {
                 totalCount++;
             }
 
             ViewBag.PageCount = totalCount + offset;
             ViewBag.Offset = offset;
        
-            return View(searchResult.items);
+            return View(searchResult.artists.items);
         }
     }
 }

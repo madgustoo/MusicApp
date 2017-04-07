@@ -24,7 +24,7 @@ namespace MusicApp.Models
         public string id { get; set; }
         public string name { get; set; }
         public int popularity { get; set; }
-        public string previewurl { get; set; }
+        public string previewUrl { get; set; }
         public int track_number { get; set; }
         public string type { get; set; }
         public string uri { get; set; }

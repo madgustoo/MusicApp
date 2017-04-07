@@ -14,7 +14,7 @@ namespace MusicApp.Controllers
         [HttpGet]
         public async Task<ActionResult> Index() {
             var searchList = await spotifyService.SearchArtist("pnl", 0);
-            return View(searchList.items);
+            return View(searchList.artists.items);
         }
 
     }
