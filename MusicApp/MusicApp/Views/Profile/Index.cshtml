@@ -5,8 +5,7 @@
 }
 
 @section scripts {
-    <script src="~/Content/js/Playlist.js"></script>
-    <script src="~/Content/js/AudioPlayer.js"></script>
+    <script src="~/Content/js/MusicPlayer.js"></script>
 }
 
 @section head {
@@ -24,8 +23,8 @@
                     {
                         <tr>
                             <td><span class="trackNo">@(counter++)</span></td>
-                            <td id="trackName"><a href="@track.previewUrl">@track.name</a></td>
-                            <td style="color:red;"><a href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                            <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
+                            <td style="color:red;"><a target="_blank" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
                             <td><i class="fa fa-list" aria-hidden="true"></i></td>
                             <td>
                                 <span class="change-icon" style="color:red;">

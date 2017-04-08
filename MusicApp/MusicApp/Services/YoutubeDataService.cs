@@ -25,7 +25,7 @@ namespace MusicApp.Services
 
         }
 
-        public async Task<string> GetVideoUrl(string trackName) {
+        public async Task<string> GetVideoUrl(string artistName, string trackName) {
 
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -34,8 +34,9 @@ namespace MusicApp.Services
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = trackName; 
+            searchListRequest.Q = artistName + " " + trackName; 
             searchListRequest.MaxResults = 5;
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.ViewCount;
 
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
@@ -63,9 +64,9 @@ namespace MusicApp.Services
         }
 
         // Adds to each track its Youtube url
-        public async void AddYoutubeUrl(List<Track> playlist) {
+        public async Task AddYoutubeUrl(List<Track> playlist) {
             foreach (var track in playlist) {
-                track.youtubeUrl = await GetVideoUrl(track.name);
+                track.youtubeUrl = await GetVideoUrl(track.artists[0].name, track.name);
             }
         }
          

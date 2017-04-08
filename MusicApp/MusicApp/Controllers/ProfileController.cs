@@ -18,7 +18,7 @@ namespace MusicApp.Controllers
         public async Task<ActionResult> Index(int? id)  {
             //List<Album> artistAlbums = await spotifyService.GetArtistAlbums("3NH8t45zOTqzlZgBvZRjvB");
             List<Track> topTracks = await spotifyService.GetArtistTopTracks("3NH8t45zOTqzlZgBvZRjvB");
-            youtubeService.AddYoutubeUrl(topTracks);
+            await youtubeService.AddYoutubeUrl(topTracks);
             ViewBag.Artist = topTracks[0].artists[0].name;
             return View(topTracks);
         }
