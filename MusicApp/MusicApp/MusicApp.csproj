@@ -188,6 +188,7 @@
     <Content Include="Content\css\return-to-top.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\search.css" />
+    <Content Include="Content\js\FavoriteTrack.js" />
     <Content Include="Content\js\MusicPlayer.js" />
     <Content Include="Content\js\Navigation-bar.js" />
     <Content Include="Content\js\Return-to-top.js" />

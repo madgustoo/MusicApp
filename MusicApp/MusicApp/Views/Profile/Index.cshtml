@@ -6,14 +6,15 @@
 
 @section scripts {
     <script src="~/Content/js/MusicPlayer.js"></script>
+    <script src="~/Content/js/FavoriteTrack.js"></script>
 }
 
 @section head {
     <link rel="stylesheet" href="~/Content/css/profile.css" /> 
 }
 
-<div class="row">
-    <div class="container">
+<div class="container">
+    <div class="row">
         <div class="col-md-4">
             <h4>Top Tracks</h4>
             <h6>Brought to you by Spotify</h6>
@@ -24,12 +25,12 @@
                         <tr>
                             <td><span class="trackNo">@(counter++)</span></td>
                             <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
-                            <td style="color:red;"><a target="_blank" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
-                            <td><i class="fa fa-list" aria-hidden="true"></i></td>
+                            <td><a target="_blank" style="color:#dc2020!important;" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                            <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
                             <td>
-                                <span class="change-icon" style="color:red;">
-                                    <i id="" class="fa fa-heart-o" aria-hidden="true"></i>
-                                    <i id="" class="fa fa-heart" aria-hidden="true"></i>
+                                <span class="change-icon" style="color:pink;">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
                                 </span>
                             </td>
                         </tr>
@@ -37,6 +38,24 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-md-8">
+            <h4>@ViewBag.Artist Albums</h4>
+            <h6>All Albums</h6>
+            <div class="albums">
+                @foreach (var album in ViewBag.Albums)
+                {
+                    <a id="albumObj" class="thumbnail">
+                        <img class="img-responsive" height="180" width="180" src="@album.images[0].url" alt="Album" />
+                        <p>@album.name</p>  
+                    </a>       
+                                                  
+                }
+            </div>
+        </div>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
+        <p>.</p>
     </div>
 </div>
 

@@ -30,11 +30,11 @@ var audio = $('#audioPlayer').bind('play', function () {
         loadTrack(index);
         audio.play();
     } else {
+        // Reached the end 
         audio.pause();
         npAction.text("Paused...");
         // restart the playlist when end is reached
-        index = 0;
-        loadTrack(index);
+        loadTrack(0);
     }
 }).get(0);
 

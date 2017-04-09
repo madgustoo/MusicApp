@@ -16,9 +16,10 @@ namespace MusicApp.Controllers
     
         [HttpGet]
         public async Task<ActionResult> Index(int? id)  {
-            //List<Album> artistAlbums = await spotifyService.GetArtistAlbums("3NH8t45zOTqzlZgBvZRjvB");
             List<Track> topTracks = await spotifyService.GetArtistTopTracks("3NH8t45zOTqzlZgBvZRjvB");
+            List<Album> albums = await spotifyService.GetArtistAlbums("3NH8t45zOTqzlZgBvZRjvB");
             await youtubeService.AddYoutubeUrl(topTracks);
+            ViewBag.Albums = albums;
             ViewBag.Artist = topTracks[0].artists[0].name;
             return View(topTracks);
         }

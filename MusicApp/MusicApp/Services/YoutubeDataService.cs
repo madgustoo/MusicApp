@@ -36,7 +36,7 @@ namespace MusicApp.Services
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = artistName + " " + trackName; 
             searchListRequest.MaxResults = 5;
-            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.ViewCount;
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Relevance;
 
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();

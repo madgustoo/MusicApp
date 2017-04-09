@@ -26,6 +26,24 @@ td .fa {
     cursor:pointer;
 }
 
+.albums a {
+    display:inline-block;
+}
+
+.albums a:hover {
+    text-decoration:none;
+}
+
+.albums p {
+    width:180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align:center;
+    height:auto;
+    padding-top:5%;
+}
+
 
 /* Favorite & Unfavorite */
 .change-icon > .fa + .fa,
