@@ -22,6 +22,7 @@ namespace MusicApp.Controllers
             ViewBag.Albums = albums;
             ViewBag.ArtistImage = albums[0].images[0].url;
             ViewBag.Artist = topTracks[0].artists[0].name;
+            ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + topTracks[0].artists[0].id;
             return View(topTracks);
         }
         

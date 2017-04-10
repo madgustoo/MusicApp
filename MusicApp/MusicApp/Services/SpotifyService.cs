@@ -12,7 +12,7 @@ namespace MusicApp.Service
     /// Wrapper / API Client used: https://github.com/JohnnyCrazy/SpotifyAPI-NET
     /// </summary>
     public class SpotifyService {
-
+        // TODO: Implement Singleton pattern for Services Class
         private SpotifyWebAPI _spotify;
 
         public SpotifyService() {
@@ -21,7 +21,7 @@ namespace MusicApp.Service
             };
         }
 
-        // Returns searchObject that contains 'artists' list
+        // Returns searchObject that contains 'artists' list [returns the Root Object]
         public async Task<SearchRootObject> SearchArtist(string name, int offset) {
             name += "*";
             var output = (Object) null;
@@ -54,6 +54,14 @@ namespace MusicApp.Service
             return topTrackObject.tracks;
         }
 
+        // Get all of an album's tracks [returns the RootObject]
+        public async Task<AlbumTracksRootobject> GetAlbumTracks(string albumId) {
+            // string id, int limit = 20, int offset = 0, string market = ""
+            var output = await _spotify.GetAlbumTracksAsync(albumId, 20, 0, "US");
+            string outputString = JsonConvert.SerializeObject(output);
+            AlbumTracksRootobject albumTracksObject = JsonConvert.DeserializeObject<AlbumTracksRootobject>(outputString);
+            return albumTracksObject;
+        }
 
     }
 }
