@@ -32,6 +32,7 @@ td .fa {
 
 .albums a:hover {
     text-decoration:none;
+    cursor:pointer;
 }
 
 .albums p {
@@ -44,6 +45,37 @@ td .fa {
     padding-top:5%;
 }
 
+.container h4 {
+    
+}
+
+/* Profile box */
+.profile-box {
+    padding:0;
+    margin:0;
+    right:0;
+    left:0;
+    width:100%;
+    height:150px;
+    background:#221f1f;
+}
+
+.profile-box #artistImage {
+  margin-top:50px;    
+  margin-left:15%;  
+}
+
+.profile-box #brandLogo {
+    font-size:2em;
+}
+
+.profile-box a {
+    margin-left:1%;   
+}
+
+.profile-box p {
+    color:white;
+}
 
 /* Favorite & Unfavorite */
 .change-icon > .fa + .fa,

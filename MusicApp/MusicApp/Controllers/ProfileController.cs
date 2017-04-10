@@ -20,6 +20,7 @@ namespace MusicApp.Controllers
             List<Album> albums = await spotifyService.GetArtistAlbums("3NH8t45zOTqzlZgBvZRjvB");
             await youtubeService.AddYoutubeUrl(topTracks);
             ViewBag.Albums = albums;
+            ViewBag.ArtistImage = albums[0].images[0].url;
             ViewBag.Artist = topTracks[0].artists[0].name;
             return View(topTracks);
         }
