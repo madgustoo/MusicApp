@@ -25,6 +25,15 @@ namespace MusicApp.Controllers
             ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + topTracks[0].artists[0].id;
             return View(topTracks);
         }
+
+        public async Task<ActionResult> Album(int? albumId) {
+            List<AlbumTrack> albumTracks = null;
+            AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId.ToString());
+            if (albumTracksObject != null) {
+                albumTracks = albumTracksObject.items;
+            }
+            return View(albumTracks);
+        }
         
     }
 }

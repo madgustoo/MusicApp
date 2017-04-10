@@ -14,6 +14,12 @@ namespace MusicApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Album",
+                "profile/album/{albumId}",
+                new { controller = "Profile", action = "Album", albumId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
               "Search",
               "Search/{searchTerm}",
               new { controller = "Search", action = "Index", searchTerm = UrlParameter.Optional }
