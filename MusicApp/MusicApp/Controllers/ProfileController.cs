@@ -15,21 +15,26 @@ namespace MusicApp.Controllers
         private YoutubeDataService youtubeService = new YoutubeDataService();
     
         [HttpGet]
-        public async Task<ActionResult> Index(int? id)  {
-            List<Track> topTracks = await spotifyService.GetArtistTopTracks("3NH8t45zOTqzlZgBvZRjvB");
-            List<Album> albums = await spotifyService.GetArtistAlbums("3NH8t45zOTqzlZgBvZRjvB");
-            await youtubeService.AddYoutubeUrl(topTracks);
-            ViewBag.Albums = albums;
-            ViewBag.ArtistImage = albums[0].images[0].url;
-            ViewBag.Artist = topTracks[0].artists[0].name;
-            ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + topTracks[0].artists[0].id;
-            return View(topTracks);
+        public async Task<ActionResult> Index(string id)  {
+            if (id != null) {
+                List<Track> topTracks = await spotifyService.GetArtistTopTracks(id);
+                List<Album> albums = await spotifyService.GetArtistAlbums(id);
+                await youtubeService.AddYoutubeUrl(topTracks);
+                ViewBag.Albums = albums;
+                ViewBag.ArtistImage = albums[0].images[0].url;
+                ViewBag.Artist = topTracks[0].artists[0].name;
+                ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + topTracks[0].artists[0].id;
+                return View(topTracks);
+            } else {
+                return HttpNotFound("Artist Not Found");
+            }
         }
 
-        public async Task<ActionResult> Album(int? albumId) {
+        [HttpGet]
+        public async Task<ActionResult> Album(string id) {
             List<AlbumTrack> albumTracks = null;
-            AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId.ToString());
-            if (albumTracksObject != null) {
+            AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(id);
+            if (albumTracksObject.items != null) {
                 albumTracks = albumTracksObject.items;
             }
             return View(albumTracks);

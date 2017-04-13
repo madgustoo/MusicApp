@@ -38,7 +38,7 @@ namespace MusicApp.Service
             return searchObject;
         }
 
-        // Get an artist's albums Limit = 20
+        // Get an artist's albums
         public async Task<List<Album>> GetArtistAlbums(string artistId) {
             var output = await _spotify.GetArtistsAlbumsAsync(artistId);
             string outputString = JsonConvert.SerializeObject(output);

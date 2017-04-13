@@ -32,11 +32,11 @@
                         <img class="img-circle" height="120" width="120" src="@artist.images[0].url" />
                     }
                     else {
-                        <img class="img-circle" height="150" width="150" src="http://www.nugget.ca/assets/img/default/contributor.jpg" />
+                        <img class="img-circle" height="120" width="120" src="http://www.nugget.ca/assets/img/default/contributor.jpg" />
                     }
                 </div>
                 <div class="result-info col-md-3" style="margin-top:1%;">
-                    <h4><a href="#">@artist.name</a></h4>
+                    <h4><a href="@Url.Action("", "Profile", new { id = artist.id })">@artist.name</a></h4>
                     @for (int i = 0; i < artist.genres.Count; i++) {
                         if (i == 10) { break; }
                         <span class="badge">@artist.genres[i]</span>
