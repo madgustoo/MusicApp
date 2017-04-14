@@ -15,8 +15,20 @@ namespace MusicApp
 
             routes.MapRoute(
               "Search",
-              "Search/{searchTerm}",
+              "search/{searchTerm}",
               new { controller = "Search", action = "Index", searchTerm = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                "Profile",
+                "profile/{artistId}",
+                new { controller = "Profile", action = "Index", artistId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                "Album",
+                "profile/{artistId}/album/{albumId}",
+                new { controller = "Profile", action = "Album", artistId = UrlParameter.Optional, albumId = UrlParameter.Optional }
             );
 
             routes.MapRoute(

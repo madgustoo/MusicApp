@@ -4,88 +4,114 @@
     int counter = 1;
 }
 
-@section scripts {
-    <script src="~/Content/js/MusicPlayer.js"></script>
-    <script src="~/Content/js/FavoriteTrack.js"></script>
-}
+@if (Model == null) {
+    <div class="container">
+        <p>Error: Artist not found</p>
+    </div>
+} else {
 
-@section head {
-    <link rel="stylesheet" href="~/Content/css/profile.css" /> 
-}
+    @section scripts {
+        <script src="~/Content/js/MusicPlayer.js"></script>
+        <script src="~/Content/js/FavoriteTrack.js"></script>
+    }
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 hidden-xs">
-            <div class="profile-box">
-                <img id="artistImage" class="img-circle" height="180" width="180" src="@ViewBag.ArtistImage" />
-                <a title="Spotify" target="_blank" href="@ViewBag.SpotifyURL" style="color:#25f315 !important;"><i id="brandLogo" class="fa fa-spotify" aria-hidden="true"></i></a>
-                <a title="Deezer" href="#"><img style="margin-bottom:0.9%;" height="50" width="30" src="https://maxcdn.icons8.com/Color/PNG/512/Logos/deezer-512.png" /></a>
-                <a title="YouTube" href="#" style="color:#dc2020!important;"><i id="brandLogo" class="fa fa-youtube" aria-hidden="true"></i></a>
-                <a title="Wikipedia" href="#" style="color:white;font-size:1.5em;"><i style="color:white;" class="fa fa-wikipedia-w" aria-hidden="true"></i></a>             
+    @section head {
+        <link rel="stylesheet" href="~/Content/css/profile.css" /> 
+    }
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 hidden-xs">
+
+                <div class="profile-box">
+                    <img id="artistImage" class="img-circle" height="180" width="180" src="@ViewBag.ArtistImage" />
+                    <a title="YouTube">
+                        <span class="fa-stack fa-2x">
+                            <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
+                            <i style="color:#cc181e;" class="fa fa-youtube fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a title="Spotify" target="_blank" href="@ViewBag.SpotifyURL">
+                        <span class="fa-stack fa-2x">
+                            <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
+                            <i style="color:#84bd00;" class="fa fa-spotify fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a title="Wikipedia">
+                        <span class="fa-stack fa-2x">
+                            <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
+                            <i style="color:black;font-size:0.8em;" class="fa fa-wikipedia-w fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a title="Deezer">
+                        <span class="fa-stack fa-2x" style="border-radius:50%;">
+                            <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
+                            <i style="color:#2da5d3;" class="fa fa-music fa-stack-1x" aria-hidden="true"></i>                    
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h1 style="margin-top:25%;">@ViewBag.Artist</h1>
-            <h4>Top Tracks</h4>
-            <h6>Brought to you by Spotify</h6>
-            <table id="topTracks" class="table" style="border:none;">
-                <tbody>
-                    @foreach (var track in Model)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 style="margin-top:25%;">@ViewBag.Artist</h1>
+                <h4>Top Tracks</h4>
+                <h6>Brought to you by Spotify</h6>
+                <table id="topTracks" class="table" style="border:none;">
+                    <tbody>
+                        @foreach (var track in Model)
+                        {
+                            <tr>
+                                <td><span class="trackNo">@(counter++)</span></td>
+                                <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
+                                <td><a target="_blank" style="color:#dc2020!important;" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                                <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
+                                <td>
+                                    <span class="change-icon" style="color:pink;">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8">
+                <h4>@ViewBag.Artist Albums</h4>
+                <h6>All Albums</h6>
+                <div class="albums">
+                    @foreach (var album in ViewBag.Albums)
                     {
-                        <tr>
-                            <td><span class="trackNo">@(counter++)</span></td>
-                            <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
-                            <td><a target="_blank" style="color:#dc2020!important;" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
-                            <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
-                            <td>
-                                <span class="change-icon" style="color:pink;">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                </span>
-                            </td>
-                        </tr>
+                        <a id="albumObj" class="thumbnail" href="@Url.Action("Album", "Profile", new { albumId = album.id })">
+                            <img class="img-responsive" height="180" width="180" src="@album.images[0].url" alt="Album" />
+                            <p>@album.name</p>  
+                        </a>       
+
                     }
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-8">
-            <h4>@ViewBag.Artist Albums</h4>
-            <h6>All Albums</h6>
-            <div class="albums">
-                @foreach (var album in ViewBag.Albums)
-                {
-                    <a id="albumObj" class="thumbnail">
-                        <img class="img-responsive" height="180" width="180" src="@album.images[0].url" alt="Album" />
-                        <p>@album.name</p>  
-                    </a>       
-                                                  
-                }
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- AUDIO PLAYA -->
-<div class="audioPlayer">    
-    <div class="container-fluid">  
-    <div class="clearfix">
-        <div class="pull-left">
-            <a id="btnPrev"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
-            <img width="110" height="110" src="https://cdn3.iconfinder.com/data/icons/music-and-sound/512/vinyl_disc_audio_record_dj_gramophone_album_flat_icon-512.png" />
-            <a id="btnNext"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+    <!-- AUDIO PLAYA -->
+    <div class="audioPlayer">    
+        <div class="container-fluid">  
+        <div class="clearfix">
+            <div class="pull-left">
+                <a id="btnPrev"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                <img width="110" height="110" src="https://cdn3.iconfinder.com/data/icons/music-and-sound/512/vinyl_disc_audio_record_dj_gramophone_album_flat_icon-512.png" />
+                <a id="btnNext"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+            </div>
+            <p id="npAction">Paused...</p>
+            <p id="npTitle">&nbsp;</p>
+            <audio src="" controls id="audioPlayer">
+                Sorry, your browser does not support HTML5
+            </audio>
         </div>
-        <p id="npAction">Paused...</p>
-        <p id="npTitle">&nbsp;</p>
-        <audio src="" controls id="audioPlayer">
-            Sorry, your browser does not support HTML5
-        </audio>
-    </div>
-    </div> <!-- /.container -->
-</div> <!-- /.audioPlayer -->
-  
+        </div> <!-- /.container -->
+    </div> <!-- /.audioPlayer -->
+}

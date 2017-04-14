@@ -45,10 +45,6 @@ td .fa {
     padding-top:5%;
 }
 
-.container h4 {
-    
-}
-
 /* Profile box */
 .profile-box {
     padding:0;
@@ -65,16 +61,8 @@ td .fa {
   margin-left:15%;  
 }
 
-.profile-box #brandLogo {
-    font-size:2em;
-}
-
 .profile-box a {
-    margin-left:1%;   
-}
-
-.profile-box p {
-    color:white;
+    cursor:pointer;
 }
 
 /* Favorite & Unfavorite */

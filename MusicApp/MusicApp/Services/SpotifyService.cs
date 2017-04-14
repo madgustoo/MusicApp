@@ -38,7 +38,7 @@ namespace MusicApp.Service
             return searchObject;
         }
 
-        // Get an artist's albums Limit = 20
+        // Get an artist's albums
         public async Task<List<Album>> GetArtistAlbums(string artistId) {
             var output = await _spotify.GetArtistsAlbumsAsync(artistId);
             string outputString = JsonConvert.SerializeObject(output);
@@ -62,6 +62,15 @@ namespace MusicApp.Service
             AlbumTracksRootobject albumTracksObject = JsonConvert.DeserializeObject<AlbumTracksRootobject>(outputString);
             return albumTracksObject;
         }
+
+        // Get an artist
+        public async Task<Artist> GetArtist(string artistId) {
+            var output = await _spotify.GetArtistAsync(artistId);
+            string outputString = JsonConvert.SerializeObject(output);
+            Artist artist = JsonConvert.DeserializeObject<Artist>(outputString);
+            return artist;
+        }
+
 
     }
 }

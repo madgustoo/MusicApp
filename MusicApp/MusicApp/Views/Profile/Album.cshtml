@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Album";
+    int counter = 1;
+}
+
+@section scripts {
+    <script src="~/Content/js/FavoriteTrack.js"></script>
+}
+
+@section head {
+    <link rel="stylesheet" href="~/Content/css/profile.css" />
+}
+
+@if (Model == null) {
+    <div class="container">
+        <p>Error: Album not found</p>
+    </div>
+} else {
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 style=""><a style="color:#b62915;" href="javascript:history.back()">Go back to albums</a></h4>
+                <h4>Album's Tracks</h4>
+                <table id="topTracks" class="table" style="border:none;">
+                    <tbody>
+                        @foreach (var track in Model) {
+                            <tr>
+                                <td><span class="trackNo">@(counter++)</span></td>
+                                <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
+                                <td><a target="_blank" style="color:#dc2020!important;" href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                                <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
+                                <td>
+                                    <span class="change-icon" style="color:pink;">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
+}
