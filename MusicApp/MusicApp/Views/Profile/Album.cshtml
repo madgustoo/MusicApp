@@ -12,18 +12,15 @@
     <link rel="stylesheet" href="~/Content/css/profile.css" />
 }
 
-@if (Model == null)
-{
+@if (Model == null) {
     <div class="container">
-        <p>Album not found</p>
+        <p>Error: Album not found</p>
     </div>
-}
-else
-{
+} else {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h4 style=""><a style="color:#b62915;" href="@Url.Action("", "Profile", new { id = 100 })">Go back to albums</a></h4>
+                <h4 style=""><a style="color:#b62915;" href="javascript:history.back()">Go back to albums</a></h4>
                 <h4>Album's Tracks</h4>
                 <table id="topTracks" class="table" style="border:none;">
                     <tbody>

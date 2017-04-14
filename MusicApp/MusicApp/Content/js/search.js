@@ -47,7 +47,7 @@ $(".search-textbox").autocomplete({
 $(".search-btn").click(function () {
     var searchterm = $("#searchArtist").val();
     console.log(searchterm);
-    var searchResult = document.location.host + "/Search/" + searchterm;
+    var searchResult = document.location.host + "/search/" + searchterm;
     window.location.href = "http://" + searchResult;
 });
 
