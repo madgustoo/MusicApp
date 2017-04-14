@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Personne";
+}
+
+@using GridMvc.Html
+@model IEnumerable<MusicApp.Models.users>
+<h2>Personne</h2>
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(p => p.user_name).Filterable(true);
+    columns.Add(p => p.start_date).Sortable(true);
+    columns.Add(p => p.Email).Filterable(true);
+    columns.Add()
+            .Sanitized(false)
+            .Encoded(false)
+            .RenderValueAs(p => Html.ActionLink("Éditer", "Edit", new { id = p.user_id }));
+})

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="pushmusicwebModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="favorite">
+          <Key>
+            <PropertyRef Name="fav_id" />
+          </Key>
+          <Property Name="fav_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="artist_name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_deezer" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_spotify" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="date_add" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="wikipedia_entry" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="favorite_log">
+          <Key>
+            <PropertyRef Name="fav_log_id" />
+          </Key>
+          <Property Name="fav_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fav_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="artist_name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_deezer" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="song_spotify" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="date_add" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="wikipedia_entry" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mdp_user" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_log">
+          <Key>
+            <PropertyRef Name="user_log_id" />
+          </Key>
+          <Property Name="user_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="mdp_user" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="pushmusicwebModelStoreContainer">
+          <EntitySet Name="favorite" EntityType="Self.favorite" Schema="pushmusicweb" store:Type="Tables" />
+          <EntitySet Name="favorite_log" EntityType="Self.favorite_log" Schema="pushmusicweb" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="pushmusicweb" store:Type="Tables" />
+          <EntitySet Name="users_log" EntityType="Self.users_log" Schema="pushmusicweb" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pushmusicwebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="favorite">
+          <Key>
+            <PropertyRef Name="fav_id" />
+          </Key>
+          <Property Name="fav_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="artist_name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_deezer" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_spotify" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_add" Type="DateTime" Nullable="false" />
+          <Property Name="wikipedia_entry" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="favorite_log">
+          <Key>
+            <PropertyRef Name="fav_log_id" />
+          </Key>
+          <Property Name="fav_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fav_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="artist_name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_deezer" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="song_spotify" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_add" Type="DateTime" Nullable="false" />
+          <Property Name="wikipedia_entry" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mdp_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_log">
+          <Key>
+            <PropertyRef Name="user_log_id" />
+          </Key>
+          <Property Name="user_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" />
+          <Property Name="mdp_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="pushmusicwebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="favorite" EntityType="Self.favorite" />
+          <EntitySet Name="favorite_log" EntityType="Self.favorite_log" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="users_log" EntityType="Self.users_log" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pushmusicwebModelStoreContainer" CdmEntityContainer="pushmusicwebEntities">
+          <EntitySetMapping Name="favorite">
+            <EntityTypeMapping TypeName="pushmusicwebModel.favorite">
+              <MappingFragment StoreEntitySet="favorite">
+                <ScalarProperty Name="fav_id" ColumnName="fav_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="artist_name" ColumnName="artist_name" />
+                <ScalarProperty Name="song_name" ColumnName="song_name" />
+                <ScalarProperty Name="song_deezer" ColumnName="song_deezer" />
+                <ScalarProperty Name="song_spotify" ColumnName="song_spotify" />
+                <ScalarProperty Name="date_add" ColumnName="date_add" />
+                <ScalarProperty Name="wikipedia_entry" ColumnName="wikipedia_entry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favorite_log">
+            <EntityTypeMapping TypeName="pushmusicwebModel.favorite_log">
+              <MappingFragment StoreEntitySet="favorite_log">
+                <ScalarProperty Name="fav_log_id" ColumnName="fav_log_id" />
+                <ScalarProperty Name="fav_id" ColumnName="fav_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="artist_name" ColumnName="artist_name" />
+                <ScalarProperty Name="song_name" ColumnName="song_name" />
+                <ScalarProperty Name="song_deezer" ColumnName="song_deezer" />
+                <ScalarProperty Name="song_spotify" ColumnName="song_spotify" />
+                <ScalarProperty Name="date_add" ColumnName="date_add" />
+                <ScalarProperty Name="wikipedia_entry" ColumnName="wikipedia_entry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="pushmusicwebModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="mdp_user" ColumnName="mdp_user" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_log">
+            <EntityTypeMapping TypeName="pushmusicwebModel.users_log">
+              <MappingFragment StoreEntitySet="users_log">
+                <ScalarProperty Name="user_log_id" ColumnName="user_log_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="mdp_user" ColumnName="mdp_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
