@@ -39,8 +39,12 @@ namespace MusicApp.Models
         public string uri { get; set; }
         // Profile stuff
         public List<Image> images { get; set; }
+        // url
         public string youtubeProfile { get; set; }
+        // url
         public string deezerProfile { get; set; }
+        // url
         public string wikipediaProfile { get; set; }
+        public string wikipediaArticle { get; set; }
     }
 }

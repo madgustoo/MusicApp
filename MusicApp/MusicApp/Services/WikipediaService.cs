@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
+using MusicApp.Models;
+using Newtonsoft.Json;
 
 namespace MusicApp.Services
 {
@@ -10,11 +14,24 @@ namespace MusicApp.Services
     /// </summary>
     public class WikipediaService
     {
-        private const string EXTRACT_URL = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=";
+        private const string EXTRACT_URL = "https://en.wikipedia.org/w/api.php";
 
-        public string GetArticleIntro(string artistName) {
+        public void GetArticleIntro(Artist artist) {
             // Use HTTP to Request
-            return "";
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
+                client.BaseAddress = new Uri(EXTRACT_URL);
+                HttpResponseMessage response = client.GetAsync("?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + artist.name).Result;
+                response.EnsureSuccessStatusCode();
+                string outputString = response.Content.ReadAsStringAsync().Result;
+                ArticleRootobject articleRootObject = JsonConvert.DeserializeObject<ArticleRootobject>(outputString);
+                SetWikipediaInfo(articleRootObject, artist);
+            }
+        }
+
+        private void SetWikipediaInfo(ArticleRootobject articleRootObject, Artist artist) {
+            String pageId = articleRootObject.query.pages.Keys.First();
+            artist.wikipediaArticle = articleRootObject.query.pages[pageId].extract;
+            artist.wikipediaProfile = "https://en.wikipedia.org/?curid=" + pageId;
         }
 
     }

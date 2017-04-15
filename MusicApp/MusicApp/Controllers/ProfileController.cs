@@ -13,6 +13,7 @@ namespace MusicApp.Controllers
     public class ProfileController: Controller {
         private SpotifyService spotifyService = new SpotifyService();
         private YoutubeDataService youtubeService = new YoutubeDataService();
+        private WikipediaService wikipediaService = new WikipediaService();
 
         [HttpGet]
         public async Task<ActionResult> Index(string artistId) {
@@ -22,9 +23,13 @@ namespace MusicApp.Controllers
                 topTracks = await spotifyService.GetArtistTopTracks(artistId);
                 List<Album> albums = await spotifyService.GetArtistAlbums(artistId);
                 await youtubeService.AddYoutubeUrl(topTracks);
+                wikipediaService.GetArticleIntro(artist);
+
                 ViewBag.Albums = albums;
-                ViewBag.Artist = artist.name;
+                ViewBag.ArtistName = artist.name;
                 ViewBag.ArtistImage = artist.images[0].url;
+                ViewBag.WikiActicle = artist.wikipediaArticle;
+                ViewBag.WikipediaURL = artist.wikipediaProfile;
                 ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + artist.id;
             }
             return View(topTracks);

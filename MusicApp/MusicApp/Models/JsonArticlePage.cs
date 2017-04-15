@@ -15,10 +15,15 @@ namespace MusicApp.Models
 
     public class Query {
         public Normalized[] normalized { get; set; }
-        public Pages pages { get; set; }
+        public Dictionary<string, Page> pages { get; set; }
     }
 
-    public class Pages { }
+    public class Page {
+        public int pageid { get; set; }
+        public int ns { get; set; }
+        public string title { get; set; }
+        public string extract { get; set; }
+    }
 
     public class Normalized{
         public string from { get; set; }

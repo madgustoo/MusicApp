@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = ViewBag.Artist;
+    ViewBag.Title = ViewBag.ArtistName;
     int counter = 1;
 }
 
@@ -37,18 +37,20 @@
                             <i style="color:#84bd00;" class="fa fa-spotify fa-stack-1x" aria-hidden="true"></i>
                         </span>
                     </a>
-                    <a title="Wikipedia">
+                    <a title="Wikipedia" target="_blank" href="@ViewBag.WikipediaURL">
                         <span class="fa-stack fa-2x">
                             <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
                             <i style="color:black;font-size:0.8em;" class="fa fa-wikipedia-w fa-stack-1x" aria-hidden="true"></i>
                         </span>
                     </a>
+                    <!--
                     <a title="Deezer">
                         <span class="fa-stack fa-2x" style="border-radius:50%;">
                             <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
                             <i style="color:#2da5d3;" class="fa fa-music fa-stack-1x" aria-hidden="true"></i>                    
                         </span>
                     </a>
+                    -->
                 </div>
             </div>
         </div>
@@ -56,8 +58,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <h1 style="margin-top:25%;">@ViewBag.Artist</h1>
+                <p>@ViewBag.WikiActicle</p>
                 <h4>Top Tracks</h4>
                 <h6>Brought to you by Spotify</h6>
                 <table id="topTracks" class="table" style="border:none;">
@@ -80,7 +83,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h4>@ViewBag.Artist Albums</h4>
                 <h6>All Albums</h6>
                 <div class="albums">
