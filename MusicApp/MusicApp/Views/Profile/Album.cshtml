@@ -1,34 +1,54 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Album";
+    ViewBag.Title = ViewBag.AlbumName;
     int counter = 1;
 }
 
 @section scripts {
     <script src="~/Content/js/FavoriteTrack.js"></script>
+    <script src="~/Content/js/MusicPlayer.js"></script>
 }
 
 @section head {
     <link rel="stylesheet" href="~/Content/css/profile.css" />
+    <link rel="stylesheet" href="~/Content/css/album.css" />
 }
 
 @if (Model == null) {
     <div class="container">
         <p>Error: Album not found</p>
     </div>
-} else {
+}
+else
+{
     <div class="container">
+        <h4 id="parentTitle"><a style="color:#b62915;" href="javascript:history.back()">Go back to albums</a></h4>
         <div class="row">
+            <div class="col-md-4">
+                <h4 id="parentTitle">@ViewBag.AlbumName</h4>
+                <img class="img-rounded" height="250" width="250" src="@ViewBag.AlbumImage" />
+                <p style="margin-top:2%;">@ViewBag.ReleaseDate</p>
+                <p>@ViewBag.Label</p>
+                <p style="font-size:0.8em;">@ViewBag.Copyright</p>
+                <br />
+                <p style="border-bottom:1px solid #b62915;"></p>
+                <p>Listen on <a target="_blank" href="@ViewBag.SpotifyURL"><i style="color:#84bd00;font-size:2em;padding:1%;" class="fa fa-spotify" aria-hidden="true"></i></a></p>
+                <p>
+                    Artist(s):
+                    @foreach (var artist in ViewBag.Artists) {
+                        @artist.name 
+                    }
+                </p>
+            </div>
             <div class="col-md-8">
-                <h4 style=""><a style="color:#b62915;" href="javascript:history.back()">Go back to albums</a></h4>
                 <h4>Album's Tracks</h4>
-                <table id="topTracks" class="table" style="border:none;">
+                <table id="topTracks" class="table" style="border:none;margin-bottom:250px;">
                     <tbody>
                         @foreach (var track in Model) {
                             <tr>
                                 <td><span class="trackNo">@(counter++)</span></td>
                                 <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
-                                <td><a target="_blank" style="color:#dc2020!important;" href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                                <td><a target="_blank" style="color:#dc2020!important;" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
                                 <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
                                 <td>
                                     <span class="change-icon" style="color:pink;">
@@ -40,7 +60,25 @@
                         }
                     </tbody>
                 </table>
-            </div>
+            </div> <!-- ./album-playlist -->
         </div>
      </div>
+
+    <!-- AUDIO PLAYA -->
+    <div class="audioPlayer">
+        <div class="container-fluid">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <a id="btnPrev"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                    <img width="110" height="110" src="https://cdn3.iconfinder.com/data/icons/music-and-sound/512/vinyl_disc_audio_record_dj_gramophone_album_flat_icon-512.png" />
+                    <a id="btnNext"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                </div>
+                <p id="npAction">Paused...</p>
+                <p id="npTitle">&nbsp;</p>
+                <audio src="" controls id="audioPlayer">
+                    Sorry, your browser does not support HTML5
+                </audio>
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.audioPlayer -->
 }
