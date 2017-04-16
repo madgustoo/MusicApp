@@ -37,10 +37,20 @@ namespace MusicApp.Controllers
 
         [HttpGet]
         public async Task<ActionResult> Album(string albumId) {
-            List<AlbumTrack> albumTracks = null;
-            AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId);
-            if (albumTracksObject.items != null) {
+            Album album = await spotifyService.GetAlbum(albumId);
+            List<Track> albumTracks = null;
+            if (album.id != null) {
+                AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId);
                 albumTracks = albumTracksObject.items;
+                await youtubeService.AddYoutubeUrl(albumTracks);
+
+                ViewBag.AlbumName = album.name;
+                ViewBag.AlbumImage = album.images[0].url;
+                ViewBag.ReleaseDate = album.release_date;
+                ViewBag.Label = album.label;
+                ViewBag.SpotifyURL = album.external_urls.spotify;
+                ViewBag.Copyright = album.copyrights[0].text;
+                ViewBag.Artists = album.artists;
             }
             return View(albumTracks);
         }

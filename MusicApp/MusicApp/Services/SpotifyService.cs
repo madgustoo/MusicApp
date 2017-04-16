@@ -46,6 +46,14 @@ namespace MusicApp.Service
             return albumObject.items;
         }
 
+        // Get one album of an artist
+        public async Task<Album> GetAlbum(string albumId) {
+            var output = await _spotify.GetAlbumAsync(albumId, "US");
+            string outputString = JsonConvert.SerializeObject(output);
+            Album album = JsonConvert.DeserializeObject<Album>(outputString);
+            return album;
+        }
+
         // Get an artist's top tracks
         public async Task<List<Track>> GetArtistTopTracks(string artistId) {
             var output = await _spotify.GetArtistsTopTracksAsync(artistId, "US");

@@ -28,6 +28,16 @@ namespace MusicApp.Models
         public string name { get; set; }
         public string type { get; set; }
         public string uri { get; set; }
+
+        // Info for one album object https://api.spotify.com/v1/albums/0sNOF9WDwhWunNAHPD3Baj
+        public string label { get; set; }
+        public string release_date { get; set; }
+        public List<Copyright> copyrights { get; set; }
+    }
+
+    public class Copyright {
+        public string text { get; set; }
+        public string type { get; set; }
     }
 
     public class Artist {

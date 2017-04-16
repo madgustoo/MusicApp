@@ -31,7 +31,7 @@ namespace MusicApp.Services
         private void SetWikipediaInfo(ArticleRootobject articleRootObject, Artist artist) {
             String pageId = articleRootObject.query.pages.Keys.First();
             artist.wikipediaProfile = "https://en.wikipedia.org/?curid=" + pageId;
-            if (Int32.Parse(pageId) < 0){
+            if (Int32.Parse(pageId) > 1){
                 artist.wikipediaArticle = articleRootObject.query.pages[pageId].extract;
             }
         }
