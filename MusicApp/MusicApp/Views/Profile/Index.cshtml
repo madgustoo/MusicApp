@@ -54,14 +54,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!--./container-fluid -->
 
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <h1 style="margin-top:25%;">@ViewBag.Artist</h1>
-                <p>@ViewBag.WikiActicle</p>
-                <h4>Top Tracks</h4>
+                <h1 style="margin-top:20%;">@ViewBag.ArtistName</h1>
+                @if (!String.IsNullOrEmpty(ViewBag.WikiActicle)) {
+                    <p id="articleInfo">@ViewBag.WikiActicle</p>
+                    <a data-toggle="modal" data-target="#modalDescription">Read More...</a>
+                }
+                <h4 id="parentTitle">Top Tracks</h4>
                 <h6>Brought to you by Spotify</h6>
                 <table id="topTracks" class="table" style="border:none;">
                     <tbody>
@@ -84,7 +87,7 @@
                 </table>
             </div>
             <div class="col-md-7">
-                <h4>@ViewBag.Artist Albums</h4>
+                <h4 id="parentTitle">@ViewBag.Artist Albums</h4>
                 <h6>All Albums</h6>
                 <div class="albums">
                     @foreach (var album in ViewBag.Albums)
@@ -117,4 +120,26 @@
         </div>
         </div> <!-- /.container -->
     </div> <!-- /.audioPlayer -->
+
+    <!-- Modal -->
+    <div id="modalDescription" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@ViewBag.ArtistName</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@ViewBag.WikiActicle</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 }

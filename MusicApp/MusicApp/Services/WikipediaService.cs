@@ -30,8 +30,10 @@ namespace MusicApp.Services
 
         private void SetWikipediaInfo(ArticleRootobject articleRootObject, Artist artist) {
             String pageId = articleRootObject.query.pages.Keys.First();
-            artist.wikipediaArticle = articleRootObject.query.pages[pageId].extract;
             artist.wikipediaProfile = "https://en.wikipedia.org/?curid=" + pageId;
+            if (Int32.Parse(pageId) < 0){
+                artist.wikipediaArticle = articleRootObject.query.pages[pageId].extract;
+            }
         }
 
     }
