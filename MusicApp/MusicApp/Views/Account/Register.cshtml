@@ -1,0 +1,25 @@
+﻿@model MusicApp.Models.viewModel.userRegisterView
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.Label("Enter user name: ") 
+    @Html.TextBoxFor(a => a.user_name)
+    @Html.ValidationMessageFor(a => a.user_name, null, new { style = "color:red" })
+    <br />
+    @Html.Label("Enter user password: ")
+    @Html.PasswordFor(a => a.mdp_user)
+    @Html.ValidationMessageFor(a => a.mdp_user, null, new {style="color:red"})
+    <br />
+    @Html.Label("Enter confirm password: ")
+    @Html.PasswordFor(a => a.mdpUserConfirm)
+    @Html.ValidationMessageFor(a => a.mdpUserConfirm, null, new { style = "color:red" })
+    <br />
+    @Html.Label("Enter Email: ")
+    @Html.TextBoxFor(a => a.Email)
+    @Html.ValidationMessageFor(a => a.Email, null, new { style = "color:red" })
+    <br />
+    <input type="submit" id="submitBtn" value="Submit" />
+}
