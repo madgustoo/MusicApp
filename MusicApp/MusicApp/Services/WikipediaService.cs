@@ -21,7 +21,7 @@ namespace MusicApp.Services
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
                 client.BaseAddress = new Uri(EXTRACT_URL);
                 HttpResponseMessage response = client.GetAsync("?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + artist.name).Result;
-                response.EnsureSuccessStatusCode();
+                // response.EnsureSuccessStatusCode();
                 string outputString = response.Content.ReadAsStringAsync().Result;
                 ArticleRootobject articleRootObject = JsonConvert.DeserializeObject<ArticleRootobject>(outputString);
                 SetWikipediaInfo(articleRootObject, artist);
@@ -31,7 +31,7 @@ namespace MusicApp.Services
         private void SetWikipediaInfo(ArticleRootobject articleRootObject, Artist artist) {
             String pageId = articleRootObject.query.pages.Keys.First();
             artist.wikipediaProfile = "https://en.wikipedia.org/?curid=" + pageId;
-            if (Int32.Parse(pageId) > 1){
+            if (articleRootObject.query.pages[pageId].extract.Length > 50) { 
                 artist.wikipediaArticle = articleRootObject.query.pages[pageId].extract;
             }
         }

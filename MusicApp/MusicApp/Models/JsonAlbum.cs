@@ -29,7 +29,7 @@ namespace MusicApp.Models
         public string type { get; set; }
         public string uri { get; set; }
 
-        // Info for one album object https://api.spotify.com/v1/albums/0sNOF9WDwhWunNAHPD3Baj
+        // Info for ONE album object https://api.spotify.com/v1/albums/0sNOF9WDwhWunNAHPD3Baj
         public string label { get; set; }
         public string release_date { get; set; }
         public List<Copyright> copyrights { get; set; }
@@ -49,12 +49,9 @@ namespace MusicApp.Models
         public string uri { get; set; }
         // Profile stuff
         public List<Image> images { get; set; }
-        // url
-        public string youtubeProfile { get; set; }
-        // url
-        public string deezerProfile { get; set; }
-        // url
-        public string wikipediaProfile { get; set; }
-        public string wikipediaArticle { get; set; }
+        public string youtubeProfile { get; set; } // url
+        public string deezerProfile { get; set; } // url
+        public string wikipediaProfile { get; set; } // url
+        public string wikipediaArticle { get; set; } // url
     }
 }

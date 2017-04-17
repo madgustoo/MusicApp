@@ -20,6 +20,12 @@ namespace MusicApp
             );
 
             routes.MapRoute(
+                "Youtube",
+                "profile/youtuberedirect",
+                new { controller = "Profile", action = "YoutubeRedirect" }
+            );
+
+            routes.MapRoute(
                 "Profile",
                 "profile/{artistId}",
                 new { controller = "Profile", action = "Index", artistId = UrlParameter.Optional }
