@@ -14,7 +14,7 @@ namespace MusicApp.Controllers
         private SpotifyService spotifyService = new SpotifyService();
         private YoutubeDataService youtubeService = new YoutubeDataService();
         private WikipediaService wikipediaService = new WikipediaService();
-        private GeniusService geniusService = new GeniusService();
+       // private GeniusService geniusService = new GeniusService();
 
 
         [HttpGet]
@@ -64,6 +64,12 @@ namespace MusicApp.Controllers
         [HttpGet]
         public async Task<string> YoutubeRedirect(string trackName, string artistName) {
             return await youtubeService.GetYoutubeUrl(trackName, artistName);
+        }
+
+        [HttpGet]
+        public void YoutubeRedirect(string trackId)
+        {
+            // Add trackid to favorites
         }
 
     }
