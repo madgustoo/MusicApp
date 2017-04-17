@@ -14,22 +14,23 @@ namespace MusicApp.Controllers
         private SpotifyService spotifyService = new SpotifyService();
         private YoutubeDataService youtubeService = new YoutubeDataService();
         private WikipediaService wikipediaService = new WikipediaService();
-        private string artistName = "";
+        private GeniusService geniusService = new GeniusService();
+
 
         [HttpGet]
         public async Task<ActionResult> Index(string artistId) {
             Artist artist = await spotifyService.GetArtist(artistId);
             List<Track> topTracks = null;
             if (artist.id != null) {
-                artistName = artist.name;
                 topTracks = await spotifyService.GetArtistTopTracks(artistId);
                 List<Album> albums = await spotifyService.GetArtistAlbums(artistId);
-                await youtubeService.AddYoutubeUrl(topTracks, artistName);
-                artist.youtubeProfile = youtubeService.GetYoutubeChannel();
+                artist.youtubeProfile = await youtubeService.GetYoutubeChannel(artist.name);
                 wikipediaService.GetArticleIntro(artist);
 
+                // geniusService.SetTrackLyrics("In the Midst of It All");
+
                 ViewBag.Albums = albums;
-                ViewBag.ArtistName = artistName;
+                ViewBag.ArtistName = artist.name;
                 ViewBag.ArtistImage = artist.images[0].url;
                 ViewBag.WikiActicle = artist.wikipediaArticle;
                 ViewBag.WikipediaURL = artist.wikipediaProfile;
@@ -46,7 +47,7 @@ namespace MusicApp.Controllers
             if (album.id != null) {
                 AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId);
                 albumTracks = albumTracksObject.items;
-                await youtubeService.AddYoutubeUrl(albumTracks, artistName);
+                await youtubeService.AddYoutubeUrl(albumTracks, album.artists[0].name);
 
                 ViewBag.AlbumName = album.name;
                 ViewBag.AlbumImage = album.images[0].url;
@@ -58,6 +59,12 @@ namespace MusicApp.Controllers
             }
             return View(albumTracks);
         }
-        
+
+        // Redirects to the track's youtube video
+        [HttpGet]
+        public async Task<string> YoutubeRedirect(string trackName, string artistName) {
+            return await youtubeService.GetYoutubeUrl(trackName, artistName);
+        }
+
     }
 }

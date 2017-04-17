@@ -35,7 +35,7 @@ namespace MusicApp.Services
         /// <param name="artistName">The artist's name</param>
         /// <param name="trackName">The track's name</param>
         /// <returns></returns>
-        public async Task<string> GetVideoUrl(string artistName, string trackName) {
+        public async Task<string> GetYouTubeURLS(string trackName, string artistName) {
 
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -44,7 +44,13 @@ namespace MusicApp.Services
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = artistName + " " + trackName; 
+            if (trackName.Length != 0) {
+                // Search for the track
+                searchListRequest.Q = artistName + " " + trackName;
+            } else {
+                // Search for the channel
+                searchListRequest.Q = artistName;
+            }
             searchListRequest.MaxResults = 5;
             searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Relevance;
 
@@ -53,9 +59,9 @@ namespace MusicApp.Services
 
             // track's video id
             string videoId = "";
-            // the youtube url
+            // its youtube url
             string youtubeUrl = "";
-            // channel id
+            // artist's channel id
             string channelId = "";
 
             foreach (var searchResult in searchListResponse.Items) {
@@ -69,15 +75,13 @@ namespace MusicApp.Services
                         break;
                 }
 
-                if (videoId.Length != 0) {
+                if (videoId.Length != 0 && youtubeUrl.Length == 0) {
                     youtubeUrl = "https://www.youtube.com/watch/" + videoId;
                 }
 
-                if (channelUrl.Length == 0) {
-                    if (channelId.Length != 0) {
-                        this.channelUrl = "https://www.youtube.com/channel/" + channelId;
-                    }
-                }
+                if (channelId.Length != 0 && channelUrl.Length == 0) {
+                    this.channelUrl = "https://www.youtube.com/channel/" + channelId;
+                }       
             }
 
             // Empty string is returned if no video/channel found
@@ -85,16 +89,22 @@ namespace MusicApp.Services
             return youtubeUrl;
         }
 
+        // Get artist's youtube channel page [Vevo, etc.]
+        public async Task<string> GetYoutubeChannel(string artistName) {
+            await GetYouTubeURLS("", artistName);
+            return channelUrl;
+        }
+
+        // Adds to one track its Youtube url
+        public async Task<string> GetYoutubeUrl(string trackname, string artistName) {
+            return await GetYouTubeURLS(trackname, artistName);
+        }
+
         // Adds to each track its Youtube url
         public async Task AddYoutubeUrl(List<Track> playlist, string artistName) {
             foreach (var track in playlist) {
-                track.youtubeUrl = await GetVideoUrl(artistName, track.name);
+                track.youtubeUrl = await GetYouTubeURLS(artistName, track.name);
             }
-        }
-
-        // Get artist's youtube channel page [vevo, musik]
-        public string GetYoutubeChannel() {
-            return channelUrl;
         }
          
     }

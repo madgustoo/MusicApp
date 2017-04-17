@@ -21,7 +21,7 @@ namespace MusicApp.Services
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
                 client.BaseAddress = new Uri(EXTRACT_URL);
                 HttpResponseMessage response = client.GetAsync("?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + artist.name).Result;
-                response.EnsureSuccessStatusCode();
+                // response.EnsureSuccessStatusCode();
                 string outputString = response.Content.ReadAsStringAsync().Result;
                 ArticleRootobject articleRootObject = JsonConvert.DeserializeObject<ArticleRootobject>(outputString);
                 SetWikipediaInfo(articleRootObject, artist);

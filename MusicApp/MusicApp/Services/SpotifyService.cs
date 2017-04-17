@@ -13,7 +13,7 @@ namespace MusicApp.Service
     /// Wrapper / API Client used: https://github.com/JohnnyCrazy/SpotifyAPI-NET
     /// </summary>
     public class SpotifyService {
-        // TODO: Implement Singleton pattern for Services Class
+        // TODO: Implement Singleton pattern for all Services Class
         private SpotifyWebAPI _spotify;
 
         public SpotifyService() {

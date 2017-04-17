@@ -73,14 +73,14 @@
                 }
                 <h4 id="parentTitle">Top Tracks</h4>
                 <h6>Brought to you by Spotify</h6>
-                <table id="topTracks" class="table" style="border:none;">
+                <table id="topTracks" class="table" style="border:none;margin-bottom:150px;">
                     <tbody>
                         @foreach (var track in Model)
                         {
                             <tr>
                                 <td><span class="trackNo">@(counter++)</span></td>
                                 <td id="trackName"><a href="@track.preview_url">@track.name</a></td>
-                                <td><a target="_blank" style="color:#dc2020!important;" href="@track.youtubeUrl"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
+                                <td><a id="youtube" target="_blank" style="color:#dc2020!important;" name='{"trackName":"@track.name", "artistName":"@ViewBag.ArtistName"}' href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></td>
                                 <td><i class="fa fa-list" title="Lyrics for @track.name" aria-hidden="true"></i></td>
                                 <td>
                                     <span class="change-icon" style="color:pink;">
@@ -148,5 +148,4 @@
 
         </div>
     </div>
-
 }
