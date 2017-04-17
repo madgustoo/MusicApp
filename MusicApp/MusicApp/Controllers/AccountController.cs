@@ -22,16 +22,54 @@ namespace MusicApp.Controllers
             {
                 using (pushmusicwebEntities re = new pushmusicwebEntities())
                 {
-                    users ru = new users();
-                    ru.user_name = r.user_name;
-                    ru.mdp_user = r.mdp_user;
-                    ru.Email = r.Email;
-                    re.users.Add(ru);
-                    re.SaveChanges();
-                    Response.Write("<script> alert('data submitted successfully')</script>");
+                    var resemail = re.users.Where(a => a.user_name == r.user_name).ToList();
+
+                    if (resemail.Count > 0)
+                    {
+                        Response.Write("<script> alert('email already existe, use different email')</script>");
+                    }
+                    else { 
+                        users ru = new users();
+                        ru.user_name = r.user_name;
+                        ru.mdp_user = r.mdp_user;
+                        ru.Email = r.Email;
+                        re.users.Add(ru);
+                        re.SaveChanges();
+                        Session["username"] = r.user_name;
+                        Response.Write("<script> alert('data submitted successfully')</script>");
+                    }
                 }
             }
+            return View("register");
+            
+
+
+        }
+        public ActionResult Login()
+        {
             return View();
         }
-    }
+        [HttpPost]
+        public ActionResult Login(userLoginView lg)
+        {
+            if (ModelState.IsValid)
+            {
+                using (pushmusicwebEntities ue = new pushmusicwebEntities())
+                {
+                    var log = ue.users.Where(a => a.user_name.Equals(lg.user_name) && a.mdp_user.Equals(lg.mdp_user)).FirstOrDefault();
+
+                    if (log != null)
+                    {
+                        Session["username"] = log.user_name;
+                        return RedirectToAction("index", "Home");
+                    }
+                    else
+                    {
+                        Response.Write("<script> alert('Wrong username or password ')</script>");
+                    }
+                }
+            }
+                return View();
+        }
+        }
 }

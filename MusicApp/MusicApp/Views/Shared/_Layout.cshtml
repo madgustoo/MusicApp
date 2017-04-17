@@ -34,7 +34,8 @@
                             <a class="ico-btn clear-btn"><i class="material-icons ic_clear">&#xE14C;</i></a>
                         </div>
                         <div class="navbar-end">
-                            <a href="#signup" data-toggle="modal" data-target=".bs-modal-sm" style="text-transform: uppercase">Connection</a>                            
+                            @*@Html.ActionLink("Connection", "Login", "Account", new { style = "text-transform: uppercase" })*@
+                            <a href="@Url.Action("Login", "Account")" @*data-toggle="modal" data-target=".bs-modal-sm"*@ style="text-transform: uppercase">Connection</a>                            
                         </div>
                     </div>
                 </div> 
