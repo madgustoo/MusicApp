@@ -14,7 +14,7 @@ namespace MusicApp.Services
     /// </summary>
     public class GeniusService {
 
-        private readonly string API_TOKEN = "EfSAEGe8_3sBG9MvZpWuXztbqGZJDE80ZerUPQZOlG_v9xF2w3Z0eIbV1D2PNtzm";
+        private readonly string API_TOKEN = "uDtfeAgTKL3_YnOxco4NV6B-WVZAIGyuzgH6Yp07FiV9K9ZRFOAa3r3YoxHVG1Gg";
         private const string API_ENDPOINT = "http://api.genius.com";
 
         public GeniusService() { }
@@ -23,10 +23,9 @@ namespace MusicApp.Services
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
                 client.BaseAddress = new Uri(API_ENDPOINT);
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("AuthorizationToken ", API_TOKEN);
-                client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", API_TOKEN);
-                HttpResponseMessage response = client.GetAsync("?q" + trackName).Result;
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", "Bearer " + API_TOKEN);
+                HttpResponseMessage response = client.GetAsync("?q=" + trackName).Result;
                 string outputString = response.Content.ReadAsStringAsync().Result;
-                //ArticleRootobject articleRootObject = JsonConvert.DeserializeObject<ArticleRootobject>(outputString);
             }    
         }
 
