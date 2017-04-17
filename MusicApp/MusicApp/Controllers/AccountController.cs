@@ -26,7 +26,7 @@ namespace MusicApp.Controllers
 
                     if (resemail.Count > 0)
                     {
-                        Response.Write("<script> alert('email already existe, use different email')</script>");
+                        Response.Write("<script> alert('user already existe, use different email')</script>");
                     }
                     else { 
                         users ru = new users();
@@ -36,7 +36,7 @@ namespace MusicApp.Controllers
                         re.users.Add(ru);
                         re.SaveChanges();
                         Session["username"] = r.user_name;
-                        Response.Write("<script> alert('data submitted successfully')</script>");
+                        return RedirectToAction("index", "Home");
                     }
                 }
             }
@@ -65,7 +65,7 @@ namespace MusicApp.Controllers
                     }
                     else
                     {
-                        Response.Write("<script> alert('Wrong username or password ')</script>");
+                        Response.Write("<script> alert('Wrong username or password ')</script>");//append
                     }
                 }
             }
