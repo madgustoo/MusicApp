@@ -25,7 +25,7 @@
 
                 <div class="profile-box">
                     <img id="artistImage" class="img-circle" height="180" width="180" src="@ViewBag.ArtistImage" />
-                    <a title="YouTube">
+                    <a title="YouTube" target="_blank" href="@ViewBag.YoutubeChannelURL">
                         <span class="fa-stack fa-2x">
                             <i style="color:white;" class="fa fa-circle fa-stack-2x icon-background2"></i>
                             <i style="color:#cc181e;" class="fa fa-youtube fa-stack-1x" aria-hidden="true"></i>
@@ -63,7 +63,7 @@
                 <!-- Description -->
                 @if (!String.IsNullOrEmpty(ViewBag.WikiActicle)) {
                     <p id="articleInfo">@ViewBag.WikiActicle</p>
-                    <a data-toggle="modal" data-target="#modalDescription">Read More...</a>
+                    <a data-toggle="modal" style="cursor:pointer;" data-target="#modalDescription">Read More...</a>
                 }
                 <h4 id="parentTitle">Top Tracks</h4>
                 <h6>Brought to you by Spotify</h6>

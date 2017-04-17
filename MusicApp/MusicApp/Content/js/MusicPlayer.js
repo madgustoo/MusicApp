@@ -35,6 +35,8 @@ var audio = $('#audioPlayer').bind('play', function () {
         npAction.text("Paused...");
         // restart the playlist when end is reached
         loadTrack(0);
+        $("#topTracks tbody tr").removeClass("active");
+        $("#topTracks tbody tr:eq(0)").addClass("active");
     }
 }).get(0);
 

@@ -1,6 +1,7 @@
 ﻿using MusicApp.Models;
 using Newtonsoft.Json;
 using SpotifyAPI.Web;
+using SpotifyAPI.Web.Enums;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -40,7 +41,7 @@ namespace MusicApp.Service
 
         // Get an artist's albums
         public async Task<List<Album>> GetArtistAlbums(string artistId) {
-            var output = await _spotify.GetArtistsAlbumsAsync(artistId);
+            var output = await _spotify.GetArtistsAlbumsAsync(artistId, AlbumType.Album, 20, 0, "US");
             string outputString = JsonConvert.SerializeObject(output);
             AlbumRootObject albumObject = JsonConvert.DeserializeObject<AlbumRootObject>(outputString);
             return albumObject.items;

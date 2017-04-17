@@ -14,22 +14,26 @@ namespace MusicApp.Controllers
         private SpotifyService spotifyService = new SpotifyService();
         private YoutubeDataService youtubeService = new YoutubeDataService();
         private WikipediaService wikipediaService = new WikipediaService();
+        private string artistName = "";
 
         [HttpGet]
         public async Task<ActionResult> Index(string artistId) {
             Artist artist = await spotifyService.GetArtist(artistId);
             List<Track> topTracks = null;
-            if (artist.id != null) { 
+            if (artist.id != null) {
+                artistName = artist.name;
                 topTracks = await spotifyService.GetArtistTopTracks(artistId);
                 List<Album> albums = await spotifyService.GetArtistAlbums(artistId);
-                await youtubeService.AddYoutubeUrl(topTracks);
+                await youtubeService.AddYoutubeUrl(topTracks, artistName);
+                artist.youtubeProfile = youtubeService.GetYoutubeChannel();
                 wikipediaService.GetArticleIntro(artist);
 
                 ViewBag.Albums = albums;
-                ViewBag.ArtistName = artist.name;
+                ViewBag.ArtistName = artistName;
                 ViewBag.ArtistImage = artist.images[0].url;
                 ViewBag.WikiActicle = artist.wikipediaArticle;
                 ViewBag.WikipediaURL = artist.wikipediaProfile;
+                ViewBag.YoutubeChannelURL = artist.youtubeProfile;
                 ViewBag.SpotifyURL = "https://play.spotify.com/artist/" + artist.id;
             }
             return View(topTracks);
@@ -42,7 +46,7 @@ namespace MusicApp.Controllers
             if (album.id != null) {
                 AlbumTracksRootobject albumTracksObject = await spotifyService.GetAlbumTracks(albumId);
                 albumTracks = albumTracksObject.items;
-                await youtubeService.AddYoutubeUrl(albumTracks);
+                await youtubeService.AddYoutubeUrl(albumTracks, artistName);
 
                 ViewBag.AlbumName = album.name;
                 ViewBag.AlbumImage = album.images[0].url;

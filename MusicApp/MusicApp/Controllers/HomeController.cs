@@ -16,6 +16,5 @@ namespace MusicApp.Controllers
             var searchList = await spotifyService.SearchArtist("pnl", 0);
             return View(searchList.artists.items);
         }
-
     }
 }
