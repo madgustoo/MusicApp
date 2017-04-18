@@ -35,7 +35,14 @@
                         </div>
                         <div class="navbar-end">
                             @*@Html.ActionLink("Connection", "Login", "Account", new { style = "text-transform: uppercase" })*@
-                            <a href="@Url.Action("Login", "Account")" @*data-toggle="modal" data-target=".bs-modal-sm"*@ style="text-transform: uppercase">Connection</a>                            
+                            @if (Session["username"] == null)
+                            {
+                            <a href="@Url.Action("Login", "Account")" @*data-toggle="modal" data-target=".bs-modal-sm"*@ style="text-transform: uppercase">Connection</a> 
+                            }
+                            else
+                            {
+                                @Html.ActionLink("LOGOUT","Logout","Account");
+                            }
                         </div>
                     </div>
                 </div> 
