@@ -33,8 +33,7 @@ $(".search-textbox").autocomplete({
     source: getSearchData,
     minLength: 2,
     select: function (event, ui) {
-        alert(ui.item.name);
-        // window.location.href = ui.item.id;
+        window.location.href = "http://" + document.location.host + "/profile/" + ui.item.id;
         // $("ul.ui-autocomplete").hide();
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
