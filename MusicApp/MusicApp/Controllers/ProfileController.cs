@@ -72,21 +72,18 @@ namespace MusicApp.Controllers
         
         [HttpPost]
         public ActionResult AddToFavorites(string trackId, string artistName, favorite fav) {
-            if (ModelState.IsValid)
-            {
-                using (pushmusicwebEntities re = new pushmusicwebEntities())
-                {
+            if (ModelState.IsValid) {
+                using (pushmusicwebEntities re = new pushmusicwebEntities()) {
                     var reFav = re.favorite.Where(a => a.user_name == Session["username"].ToString() && a.track_id == trackId).ToList();
-                    if (reFav.Count > 0)
-                    {
+                    if (reFav.Count > 0) {
                         //quand le track est deja dans favorite on le delete de la table
                         var row = re.favorite.Where(d => d.track_id == trackId && d.user_name == Session["username"].ToString()).First();
                         re.favorite.Remove(row);
                         re.SaveChanges();
                         Response.Write("met si tu veux ton code jquery..");
+                        return Json(new { success = true, responseText = artistName + "'s track removed successfully!" }, JsonRequestBehavior.AllowGet);
                     }
-                    else
-                    {
+                    else {
                         //sinon on l'ajoute dans la table favorite
                         favorite fa = new favorite();
                         fa.user_name = Session["username"].ToString();
@@ -94,15 +91,11 @@ namespace MusicApp.Controllers
                         fa.artist_name = artistName;
                         re.favorite.Add(fa);
                         re.SaveChanges();
-
+                        return Json(new { success = true, responseText = artistName + "'s track added successfully!" }, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
-                    // Add trackid and artistname to favorites
-                    // return un string if added sucsufully 
-                    return Json(new { success = true, responseText = artistName + "'s track added successfully!" }, JsonRequestBehavior.AllowGet);
-            // else if not added successfully return un autre json
-            //return Json(new { success = false, responseText = ":( Try again at a later time" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false, responseText = "Something went wrong in our end. Please try again at a later time" }, JsonRequestBehavior.AllowGet);
         }
 
     }
