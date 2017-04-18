@@ -297,26 +297,3 @@ body {
     padding-top: 60px; 
 }
 
-.featured {
-	background-color: #242424;
-}
-
-.featured img {
-    margin-left:5%;
-}
-
-
-.panel > .panel-heading {
-    background-image: none;
-    background-color: #242424;
-    color: white;
-}
-
-.panel h3 {
-    color:white;
-}
-
-
-.content {
-    margin-right:30%;
-}

@@ -1,11 +1,24 @@
 ﻿/* Favorite & Unfavorite */
 
-$("#topTracks td #favoriteMe").click(function () {
-    
+$("#topTracks td #favoriteMe").click(function (event) {
+    event.preventDefault();
+    // get the td
+    var thisTrack = $(this).parent().parent();
+    var data = JSON.parse(thisTrack.attr("name"));
+    console.log(data.artistName);
+    console.log(data.trackId);
+    $.ajax({
+        url: "/Profile/AddToFavorites/",
+        type: 'POST',
+        dataType: 'json',
+        data: { trackId: data.trackId, artistName: data.artistName },
+        success: function (result) {
+            console.log(result);
+        }
+    });
 });
 
-$(".change-icon .fa").click(function () {
-
+$(".change-icon .fa").click(function (event) {
 });
 
 // Redirects to track's youtube video with ajax

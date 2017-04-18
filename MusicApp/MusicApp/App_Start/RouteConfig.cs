@@ -26,6 +26,12 @@ namespace MusicApp
             );
 
             routes.MapRoute(
+                "Favoritec",
+                "profile/addtofavorites",
+                new { controller = "Profile", action = "AddToFavorites" }
+            );
+
+            routes.MapRoute(
                 "Profile",
                 "profile/{artistId}",
                 new { controller = "Profile", action = "Index", artistId = UrlParameter.Optional }

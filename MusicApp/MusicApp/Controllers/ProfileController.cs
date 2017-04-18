@@ -66,10 +66,14 @@ namespace MusicApp.Controllers
             return await youtubeService.GetYoutubeUrl(trackName, artistName);
         }
 
-        [HttpGet]
-        public void YoutubeRedirect(string trackId)
-        {
-            // Add trackid to favorites
+        
+        [HttpPost]
+        public ActionResult AddToFavorites(string trackId, string artistName) {
+            // Add trackid and artistname to favorites
+            // return un string if added sucsufully 
+            return Json(new { success = true, responseText = artistName + "'s track added successfully!" }, JsonRequestBehavior.AllowGet);
+            // else if not added successfully return un autre json
+            //return Json(new { success = false, responseText = ":( Try again at a later time" }, JsonRequestBehavior.AllowGet);
         }
 
     }

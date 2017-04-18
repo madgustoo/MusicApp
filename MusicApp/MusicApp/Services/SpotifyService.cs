@@ -80,6 +80,12 @@ namespace MusicApp.Service
             return artist;
         }
 
-
+        // Get an artist's related artists
+        public async Task<List<Artist>> GetRelatedArtists(string artistId) {
+            var output = await _spotify.GetRelatedArtistsAsync(artistId);
+            string outputString = JsonConvert.SerializeObject(output);
+            RelatedArtistRootObject relatedArtistsObject = JsonConvert.DeserializeObject<RelatedArtistRootObject>(outputString);
+            return relatedArtistsObject.artists;
+        }
     }
 }
