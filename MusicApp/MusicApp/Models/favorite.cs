@@ -18,6 +18,6 @@ namespace MusicApp.Models
         public string artist_name { get; set; }
         public System.DateTime date_add { get; set; }
         public string user_name { get; set; }
-        public int track_id { get; set; }
+        public string track_id { get; set; }
     }
 }
