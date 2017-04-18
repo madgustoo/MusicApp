@@ -22,12 +22,15 @@ namespace MusicApp.Controllers
             Artist artist = await spotifyService.GetArtist(artistId);
             List<Track> topTracks = null;
             if (artist.id != null) {
+                // Set cookie for homepage's related artists section
+                Response.Cookies["cookie"].Value = artist.id;
+
                 topTracks = await spotifyService.GetArtistTopTracks(artistId);
                 List<Album> albums = await spotifyService.GetArtistAlbums(artistId);
                 artist.youtubeProfile = await youtubeService.GetYoutubeChannel(artist.name);
                 wikipediaService.GetArticleIntro(artist);
 
-                // geniusService.SetTrackLyrics("In the Midst of It All");
+                // geniusService.SetTrackLyrics("PNL");
 
                 ViewBag.Albums = albums;
                 ViewBag.ArtistName = artist.name;

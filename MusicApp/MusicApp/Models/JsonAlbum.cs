@@ -47,6 +47,8 @@ namespace MusicApp.Models
         public string name { get; set; }
         public string type { get; set; }
         public string uri { get; set; }
+        // Related artist struff
+        public List<string> genres { get; set; }
         // Profile stuff
         public List<Image> images { get; set; }
         public string youtubeProfile { get; set; } // url

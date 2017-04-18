@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.title = "Home";
+    int counter = 0;
 }
 
 @section head {
@@ -39,32 +40,41 @@
             <div class="panel-body">
                 <div id="featuredArtist" class="row">
                     <div class="clearfix" style="width:80%;">
-                        <img class="img-circle img-responsive pull-left" src="https://i.scdn.co/image/dd331c087a68fdb3218539fdd04da7f3ea8dca3b" width="200" height="200">
-                        <div class="pull-right">
+                        <img class="img-circle img-responsive pull-right" src="https://i.scdn.co/image/dd331c087a68fdb3218539fdd04da7f3ea8dca3b" width="200" height="200">
+                        <div class="content pull-left">
                             <h3><a style="color:white;" href="">PNL</a></h3>
                             <p><span class="badge">francoton</span></p>
                             <p><span class="badge">trap francais</span></p>
                             <p><span class="badge">bledaro music</span></p>
                         </div>
-                    </div> <!-- / Clearfix -->
-                </div>
+                    </div> <!-- /.Clearfix -->
+                </div> <!-- /#featuredArtist -->
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="featured panel">
-            <div class="panel-heading">Related Artists</div>
+            <div class="panel-heading">Related Artists (based on your last search)</div>
             <div class="panel-body">
-                @foreach (var artist in ViewBag.RelatedArtists) {
-                    <div id="featuredArtist" class="row">
-                        <div class="clearfix" style="width:80%;">
-                            <img class="img-circle img-responsive pull-left" src="@artist.images[0].url" width="200" height="200">
-                            <div class="pull-right">
-                                <h3><a style="color:white;" href="">@artist.name</a></h3>
-
-                            </div>
-                        </div> <!-- / Clearfix -->
-                    </div>
+                @if (ViewBag.RelatedArtists != null) {
+                    { counter = 0; }
+                    foreach (var artist in ViewBag.RelatedArtists) {
+                        <div id="featuredArtist" class="row">
+                            <div class="clearfix" style="width:80%;">
+                                <img width="200" height="200" class="img-circle pull-right" src="@artist.images[0].url">
+                                <div class="content pull-left">
+                                    <h3><a style="color:white;" href="@Url.Action("/", "profile", new { id = artist.id })">@artist.name</a></h3>
+                                    @foreach (var genre in artist.genres) {
+                                        <p><span class="badge">@genre</span></p>
+                                        if (counter == 3) { break; }
+                                        {
+                                            counter = counter + 1;
+                                        }
+                                    }
+                                </div>
+                            </div> <!-- / Clearfix -->
+                        </div>
+                    }
                 }
             </div>
         </div>
