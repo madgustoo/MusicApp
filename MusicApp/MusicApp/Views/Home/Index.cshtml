@@ -57,8 +57,8 @@
             <div class="panel-heading">Related Artists (based on your last search)</div>
             <div class="panel-body">
                 @if (ViewBag.RelatedArtists != null) {
-                    { counter = 0; }
                     foreach (var artist in ViewBag.RelatedArtists) {
+                        { counter = 0; }
                         <div id="featuredArtist" class="row">
                             <div class="clearfix" style="width:80%;">
                                 <img width="200" height="200" class="img-circle pull-right" src="@artist.images[0].url">
