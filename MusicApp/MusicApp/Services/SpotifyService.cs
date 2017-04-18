@@ -87,5 +87,13 @@ namespace MusicApp.Service
             RelatedArtistRootObject relatedArtistsObject = JsonConvert.DeserializeObject<RelatedArtistRootObject>(outputString);
             return relatedArtistsObject.artists;
         }
+
+        // Get a single track 
+        public async Task<Track> GetTrack(string trackId)  {
+            var output = await _spotify.GetTrackAsync(trackId, "US");
+            string outputString = JsonConvert.SerializeObject(output);
+            Track track = JsonConvert.DeserializeObject<Track>(outputString);
+            return track;
+        }
     }
 }
