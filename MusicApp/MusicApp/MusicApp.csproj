@@ -247,6 +247,7 @@
     <Compile Include="Models\JsonAlbumTracks.cs" />
     <Compile Include="Models\JsonArticlePage.cs" />
     <Compile Include="Models\JsonAlbum.cs" />
+    <Compile Include="Models\JsonRelatedArtist.cs" />
     <Compile Include="Models\JsonSearch.cs" />
     <Compile Include="Models\JsonTopTrack.cs" />
     <Compile Include="Models\Model1.Context.cs">
@@ -275,6 +276,7 @@
     <Compile Include="Models\viewModel\userLoginView.cs" />
     <Compile Include="Models\viewModel\userRegisterView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GeniusService.cs" />
     <Compile Include="Services\SpotifyService.cs" />
     <Compile Include="Services\WikipediaService.cs" />
     <Compile Include="Services\YoutubeDataService.cs" />

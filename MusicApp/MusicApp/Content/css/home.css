@@ -4,10 +4,36 @@
 }
 
 .jumbotron button {
-    margin-top:10%;
+    margin-top:5%;
 }
 
 .jumbotron {
     margin-right:-30px;
     margin-left:-30px;
+}
+
+/* FEATURED Part */
+.featured {
+	background-color: #242424;
+}
+
+.featured img {
+    margin-left:5%;
+}
+
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #242424;
+    color: white;
+}
+
+.panel h3 {
+    color:white;
+}
+
+#featuredArtist {
+    padding-top:2%;
+    padding-bottom:2%;
+    border-bottom:1px solid white;
 }
