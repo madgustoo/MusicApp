@@ -15,12 +15,9 @@ namespace MusicApp.Models
     public partial class favorite
     {
         public int fav_id { get; set; }
-        public int user_id { get; set; }
         public string artist_name { get; set; }
-        public string song_name { get; set; }
-        public string song_deezer { get; set; }
-        public string song_spotify { get; set; }
         public System.DateTime date_add { get; set; }
-        public string wikipedia_entry { get; set; }
+        public string user_name { get; set; }
+        public int track_id { get; set; }
     }
 }

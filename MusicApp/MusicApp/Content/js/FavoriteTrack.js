@@ -1,5 +1,9 @@
 ﻿/* Favorite & Unfavorite */
 
+$("#topTracks td #favoriteMe").click(function () {
+    
+});
+
 $(".change-icon .fa").click(function () {
 
 });
