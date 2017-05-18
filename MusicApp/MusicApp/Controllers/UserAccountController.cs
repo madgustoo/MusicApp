@@ -14,24 +14,21 @@ namespace MusicApp.Controllers
 
         [HttpGet]
         public async Task<ActionResult> Index() {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             // select de la bd
-            //List<string> favoritedTrackIds = select trackid from favorites where userid = session[userid]
+            List<Track> favoritedTracks = new List<Track>();
             using (pushmusicwebEntities re = new pushmusicwebEntities())
             { 
-                var fav = re.favorite.Where(a => a.user_name == Session["username"].ToString()).ToList();
-                List<Track> favoritedTracks = new List<Track>();
+                string username = Session["username"].ToString();
+                List<favorite> fav = re.favorite.Where(a => a.user_name == username).ToList();
+                favoritedTracks = new List<Track>();
                 foreach (favorite itemfav in fav) {
-
-                    foreach (Track itemtrack in favoritedTracks) {
-                        itemtrack.id = itemfav.track_id;
-                        
-                    }
+                    Track track = await spotifyService.GetTrack(itemfav.track_id);
+                    favoritedTracks.Add(track);
                 }
-
-                foreach (string id in favoritedTrackIds) {
-                Track track = await spotifyService.GetTrack(id);
-                favoritedTracks.Add(track);
-            }
             }
 
             return View(favoritedTracks);

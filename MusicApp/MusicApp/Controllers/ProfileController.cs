@@ -74,14 +74,14 @@ namespace MusicApp.Controllers
         public ActionResult AddToFavorites(string trackId, string artistName, favorite fav) {
             if (ModelState.IsValid) {
                 using (pushmusicwebEntities re = new pushmusicwebEntities()) {
-                    var reFav = re.favorite.Where(a => a.user_name == Session["username"].ToString() && a.track_id == trackId).ToList();
+                    string username = Session["username"].ToString();
+                    var reFav = re.favorite.Where(a => a.user_name == username && a.track_id == trackId).ToList();
                     if (reFav.Count > 0) {
                         //quand le track est deja dans favorite on le delete de la table
-                        var row = re.favorite.Where(d => d.track_id == trackId && d.user_name == Session["username"].ToString()).First();
+                        var row = re.favorite.Where(d => d.track_id == trackId && d.user_name == username).First();
                         re.favorite.Remove(row);
                         re.SaveChanges();
-                        Response.Write("met si tu veux ton code jquery..");
-                        return Json(new { success = true, responseText = artistName + "'s track removed successfully!" }, JsonRequestBehavior.AllowGet);
+                        return Json(new { success = false, responseText = artistName + "'s track removed successfully!" }, JsonRequestBehavior.AllowGet);
                     }
                     else {
                         //sinon on l'ajoute dans la table favorite

@@ -22,10 +22,10 @@
         <navbar>
             <div class="navbar nav navbar-fixed-top navbar-inverse">             
                 <div class="v-flex">
-                    <div class="navbar-body">
+                    <div class="navbar-body" style="height: 60px;">
                         <div class="navbar-start">
                             <a href="@Url.Action("", "")">
-                                <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/personal-1c08e.appspot.com/o/logo.svg?alt=media&token=7a322d4e-6088-4647-975a-0f36107a5547">
+                                <img class="logo" src="~/Content/logo.PNG" style="width:100px;">
                             </a>
                         </div>
                         <div class="search">
@@ -37,11 +37,13 @@
                             @*@Html.ActionLink("Connection", "Login", "Account", new { style = "text-transform: uppercase" })*@
                             @if (Session["username"] == null)
                             {
-                            <a href="@Url.Action("Login", "Account")" @*data-toggle="modal" data-target=".bs-modal-sm"*@ style="text-transform: uppercase">Connection</a> 
+                            <a href="@Url.Action("Login", "Account")" @*data-toggle="modal" data-target=".bs-modal-sm"*@ style="text-transform: uppercase">Connection</a>
                             }
                             else
                             {
+                                @Html.ActionLink("FAVORITES", "index", "userAccount");
                                 @Html.ActionLink("LOGOUT","Logout","Account");
+                                
                             }
                         </div>
                     </div>

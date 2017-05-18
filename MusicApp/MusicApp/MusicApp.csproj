@@ -212,6 +212,8 @@
     <Content Include="Content\js\Navigation-bar.js" />
     <Content Include="Content\js\Return-to-top.js" />
     <Content Include="Content\js\Search.js" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\Musicpen.PNG" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -8,8 +8,10 @@
 }
 
 .jumbotron {
-    margin-right:-30px;
-    margin-left:-30px;
+    margin-right: -30px;
+    margin-left: -30px;
+    height:350px;
+    background-image: url("/Content/Musicpen.PNG");
 }
 
 /* FEATURED Part */
